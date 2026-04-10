@@ -1,2981 +1,920 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#003580">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Seva Kendra">
-  <meta name="description" content="Government service directory for Virar citizens. Apply for PAN, Aadhaar, Passport, Voter ID, Scholarships, and 30+ services with expert guidance.">
-  <title>Digital Seva Kendra — Virar | Government Services Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Seva Kendra v4.0 — Government Services Portal</title>
+  <meta name="description" content="Trusted guide for 34+ government services in Virar, Palghar. Apply right the first time.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  
   <style>
-/* ========== CSS DESIGN SYSTEM ========== */
-:root {
-  /* Colors - India Tricolor */
-  --saffron: #FF9933;
-  --white: #FFFFFF;
-  --green: #138808;
-  
-  /* Government Blue Scale */
-  --gov-blue: #003580;
-  --gov-blue-dark: #002B61;
-  --gov-blue-light: #1976D2;
-  --ashoka-blue: #0050A0;
-  
-  /* Surfaces */
-  --surface-0: #0F1117;
-  --surface-1: #1C1F26;
-  --surface-2: #EAEEF2;
-  --surface-3: #D0D5DD;
-  
-  /* Text Colors */
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
-  --text-muted: #9CA3AF;
-  
-  /* Status Colors */
-  --success: #10B981;
-  --error: #EF4444;
-  --warning: #F59E0B;
-  --info: #3B82F6;
-  
-  /* Status Backgrounds */
-  --success-bg: #ECFDF5;
-  --error-bg: #FEF2F2;
-  --warning-bg: #FFFBEB;
-  --info-bg: #EFF6FF;
-  
-  /* Status Borders */
-  --success-border: #D1FAE5;
-  --error-border: #FEE2E2;
-  --warning-border: #FEF3C7;
-  --info-border: #DBEAFE;
-  
-  /* Status Text */
-  --success-text: #065F46;
-  --error-text: #7F1D1D;
-  --warning-text: #78350F;
-  --info-text: #1E40AF;
-  
-  /* Shadows */
-  --shadow-1: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-2: 0 2px 4px rgba(0,0,0,0.08);
-  --shadow-3: 0 4px 12px rgba(0,0,0,0.12);
-  --shadow-4: 0 8px 20px rgba(0,0,0,0.15);
-  
-  /* Border & Radius */
-  --r-sm: 6px;
-  --r-md: 12px;
-  --r-lg: 16px;
-  --r-xl: 24px;
-  --r-full: 9999px;
-  --border: 1px solid var(--surface-3);
-  
-  /* Motion */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
-  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
-}
-
-/* Dark Mode */
-[data-theme="dark"] {
-  --text-primary: #E5E7EB;
-  --text-secondary: #D1D5DB;
-  --text-muted: #9CA3AF;
-  --surface-2: #1C1F26;
-  --surface-3: #2D3139;
-  --surface-1: #25282F;
-  --shadow-1: 0 1px 2px rgba(0,0,0,0.3);
-  --shadow-2: 0 2px 4px rgba(0,0,0,0.4);
-  --shadow-3: 0 4px 12px rgba(0,0,0,0.5);
-  --shadow-4: 0 8px 20px rgba(0,0,0,0.6);
-}
-
-/* Global Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--text-primary);
-  background: var(--white);
-  transition: background-color 350ms var(--ease-standard), color 350ms var(--ease-standard);
-  overflow-x: hidden;
-}
-
-[data-theme="dark"] body {
-  background: var(--surface-0);
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rajdhani', 'Noto Sans Devanagari', sans-serif;
-  font-weight: 700;
-}
-
-p { line-height: 1.6; }
-a { color: var(--gov-blue); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* Button Styles */
-.btn {
-  border-radius: var(--r-md);
-  border: none;
-  font-weight: 600;
-  font-family: 'Rajdhani', sans-serif;
-  transition: all 200ms var(--ease-standard);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.btn:active::after {
-  animation: ripple 600ms ease-out;
-}
-
-@keyframes ripple {
-  to {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
-}
-
-.btn-primary {
-  background: var(--saffron);
-  color: white;
-}
-.btn-primary:hover {
-  background: #E67E22;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-3);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--gov-blue);
-  border: 2px solid var(--gov-blue);
-}
-.btn-outline:hover {
-  background: var(--gov-blue);
-  color: white;
-}
-
-.btn-sm {
-  padding: 8px 16px;
-  font-size: 13px;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideUpFull {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-@keyframes slideInRight {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(255,153,51,0.6); }
-  70% { box-shadow: 0 0 0 18px rgba(255,153,51,0); }
-  100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
-}
-
-@keyframes chakra-spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(100%); }
-  to { transform: translateX(-100%); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.reveal.visible {
-  animation: fadeInUp 600ms var(--ease-decelerate) forwards;
-}
-
-/* ========== NAVBAR ========== */
-.navbar-top {
-  background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, white 33.33%, white 66.66%, #138808 66.66%, #138808 100%);
-  height: 4px;
-}
-
-.navbar-utility {
-  background: var(--surface-2);
-  border-bottom: var(--border);
-  padding: 8px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-}
-
-[data-theme="dark"] .navbar-utility {
-  background: var(--surface-1);
-}
-
-.navbar-utility-left {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.navbar-utility-left .announcement {
-  overflow: hidden;
-  max-width: 400px;
-  white-space: nowrap;
-}
-
-.announcement-text {
-  display: inline-block;
-  animation: marquee-scroll 15s linear infinite;
-}
-
-.navbar-main {
-  background: white;
-  border-bottom: var(--border);
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow-1);
-}
-
-[data-theme="dark"] .navbar-main {
-  background: var(--surface-1);
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: var(--gov-blue);
-  font-weight: 700;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 18px;
-}
-
-.navbar-brand svg {
-  width: 36px;
-  height: 36px;
-}
-
-.navbar-search {
-  flex: 1;
-  max-width: 500px;
-}
-
-.navbar-search input {
-  width: 100%;
-  padding: 8px 16px;
-  border: 1px solid var(--surface-3);
-  border-radius: var(--r-md);
-  font-size: 13px;
-  transition: all 200ms var(--ease-standard);
-}
-
-.navbar-search input:focus {
-  outline: none;
-  border-color: var(--gov-blue);
-  box-shadow: 0 0 0 3px rgba(0,53,128,0.1);
-}
-
-.navbar-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.theme-toggle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: var(--surface-2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  transition: all 200ms var(--ease-standard);
-}
-
-.theme-toggle:hover {
-  background: var(--surface-3);
-  transform: scale(1.1);
-}
-
-.language-switcher {
-  display: flex;
-  gap: 4px;
-  background: var(--surface-2);
-  padding: 4px;
-  border-radius: var(--r-full);
-}
-
-.lang-btn {
-  padding: 6px 12px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  border-radius: var(--r-full);
-  transition: all 200ms var(--ease-standard);
-}
-
-.lang-btn.active {
-  background: white;
-  color: var(--gov-blue);
-}
-
-[data-theme="dark"] .lang-btn.active {
-  background: var(--surface-1);
-  color: var(--saffron);
-}
-
-/* ========== HERO SECTION ========== */
-.hero {
-  background: linear-gradient(135deg, var(--gov-blue) 0%, var(--ashoka-blue) 100%);
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-  animation: fadeInUp 800ms var(--ease-decelerate);
-}
-
-.hero-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.hero-subtitle {
-  font-size: 16px;
-  opacity: 0.9;
-  margin-bottom: 24px;
-}
-
-.hero-search {
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.hero-search input {
-  width: 100%;
-  padding: 16px 20px;
-  border: none;
-  border-radius: var(--r-md);
-  font-size: 15px;
-  box-shadow: var(--shadow-3);
-}
-
-.hero-search input::placeholder {
-  color: var(--text-muted);
-}
-
-/* ========== QUICK ACCESS ========== */
-.quick-access {
-  padding: 20px;
-  background: var(--surface-2);
-  border-bottom: var(--border);
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.quick-access::-webkit-scrollbar {
-  display: none;
-}
-
-.quick-chip {
-  white-space: nowrap;
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid var(--surface-3);
-  border-radius: var(--r-full);
-  cursor: pointer;
-  transition: all 200ms var(--ease-standard);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gov-blue);
-}
-
-.quick-chip:hover {
-  background: var(--gov-blue);
-  color: white;
-  border-color: var(--gov-blue);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-2);
-}
-
-[data-theme="dark"] .quick-chip {
-  background: var(--surface-1);
-  border-color: var(--surface-3);
-}
-
-/* ========== SERVICE GRID ========== */
-.services-section {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.services-header {
-  margin-bottom: 32px;
-}
-
-.services-header h2 {
-  font-size: 28px;
-  margin-bottom: 8px;
-  color: var(--gov-blue);
-}
-
-.filter-bar {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 8px 16px;
-  background: var(--surface-2);
-  border: 2px solid transparent;
-  border-radius: var(--r-full);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  transition: all 200ms var(--ease-standard);
-}
-
-.filter-btn:hover, .filter-btn.active {
-  background: var(--saffron);
-  color: white;
-  border-color: var(--saffron);
-}
-
-[data-theme="dark"] .filter-btn {
-  background: var(--surface-1);
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.service-card {
-  background: white;
-  border-radius: var(--r-lg);
-  padding: 20px;
-  box-shadow: var(--shadow-2);
-  cursor: pointer;
-  transition: all 300ms var(--ease-standard);
-  border-left: 4px solid var(--saffron);
-  position: relative;
-  overflow: hidden;
-}
-
-[data-theme="dark"] .service-card {
-  background: var(--surface-1);
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-4);
-  border-left-color: var(--gov-blue);
-}
-
-.service-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-}
-
-.service-card-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--gov-blue);
-  margin: 0;
-}
-
-.bookmark-btn {
-  width: 28px;
-  height: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  transition: transform 200ms var(--ease-standard);
-}
-
-.bookmark-btn.saved {
-  color: var(--saffron);
-}
-
-.service-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 12px;
-}
-
-.meta-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-muted);
-}
-
-.service-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  background: var(--info-bg);
-  color: var(--info-text);
-  border-radius: var(--r-full);
-  font-size: 11px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.service-badge.free {
-  background: var(--success-bg);
-  color: var(--success-text);
-}
-
-.service-badge.paid {
-  background: var(--warning-bg);
-  color: var(--warning-text);
-}
-
-.service-description {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-
-.service-card-footer {
-  display: flex;
-  gap: 8px;
-  padding-top: 12px;
-  border-top: 1px solid var(--surface-3);
-}
-
-.view-btn {
-  flex: 1;
-  padding: 8px 12px;
-  background: var(--gov-blue);
-  color: white;
-  border: none;
-  border-radius: var(--r-md);
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 200ms var(--ease-standard);
-}
-
-.view-btn:hover {
-  background: var(--gov-blue-dark);
-  transform: translateY(-1px);
-}
-
-/* ========== MODAL / OVERLAY ========== */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-}
-
-.modal-overlay.active {
-  display: flex;
-  animation: fadeInUp 300ms var(--ease-decelerate);
-}
-
-.modal {
-  background: white;
-  border-radius: var(--r-lg);
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  width: 100%;
-  box-shadow: var(--shadow-4);
-}
-
-[data-theme="dark"] .modal {
-  background: var(--surface-0);
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: var(--border);
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 10;
-}
-
-[data-theme="dark"] .modal-header {
-  background: var(--surface-1);
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--text-primary);
-  transition: transform 200ms var(--ease-standard);
-}
-
-.modal-close:hover {
-  transform: rotate(90deg);
-}
-
-.modal-body {
-  padding: 20px;
-}
-
-.modal-tabs {
-  display: flex;
-  gap: 0;
-  border-bottom: var(--border);
-  margin-bottom: 20px;
-}
-
-.modal-tab {
-  padding: 12px 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  border-bottom: 3px solid transparent;
-  transition: all 200ms var(--ease-standard);
-}
-
-.modal-tab.active {
-  color: var(--gov-blue);
-  border-bottom-color: var(--gov-blue);
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeInUp 300ms var(--ease-decelerate);
-}
-
-/* ========== DOCUMENT PREVIEW ========== */
-.document-preview {
-  background: var(--surface-2);
-  padding: 20px;
-  border-radius: var(--r-md);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-[data-theme="dark"] .document-preview {
-  background: var(--surface-1);
-}
-
-.document-svg {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 12px;
-}
-
-/* ========== FEE BREAKDOWN ========== */
-.fee-breakdown {
-  background: var(--info-bg);
-  padding: 16px;
-  border-radius: var(--r-md);
-  border-left: 4px solid var(--info);
-  margin-bottom: 20px;
-}
-
-.fee-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  font-size: 13px;
-  border-bottom: 1px solid var(--info-border);
-}
-
-.fee-row:last-child {
-  border-bottom: none;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--gov-blue);
-}
-
-/* ========== STEPS ========== */
-.steps-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.step {
-  display: flex;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--surface-3);
-}
-
-.step:last-child {
-  border-bottom: none;
-}
-
-.step-number {
-  width: 32px;
-  height: 32px;
-  background: var(--saffron);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.step-content h4 {
-  margin: 0 0 4px 0;
-  font-size: 14px;
-  color: var(--gov-blue);
-}
-
-.step-content p {
-  margin: 0;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-/* ========== NOTES ========== */
-.notes-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.note {
-  padding: 12px 16px;
-  border-left: 4px solid;
-  border-radius: var(--r-sm);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.note.danger {
-  background: var(--error-bg);
-  border-color: var(--error);
-  color: var(--error-text);
-}
-
-.note.info {
-  background: var(--info-bg);
-  border-color: var(--info);
-  color: var(--info-text);
-}
-
-.note.success {
-  background: var(--success-bg);
-  border-color: var(--success);
-  color: var(--success-text);
-}
-
-.note.warning {
-  background: var(--warning-bg);
-  border-color: var(--warning);
-  color: var(--warning-text);
-}
-
-/* ========== TOAST NOTIFICATIONS ========== */
-.toast-container {
-  position: fixed;
-  top: 90px;
-  right: 20px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.toast {
-  background: white;
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-3);
-  padding: 16px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  min-width: 280px;
-  animation: slideInRight 300ms var(--ease-decelerate);
-  border-left: 4px solid;
-  position: relative;
-  overflow: hidden;
-}
-
-[data-theme="dark"] .toast {
-  background: var(--surface-1);
-}
-
-.toast.success {
-  border-left-color: var(--success);
-}
-
-.toast.error {
-  border-left-color: var(--error);
-}
-
-.toast.info {
-  border-left-color: var(--info);
-}
-
-.toast.warning {
-  border-left-color: var(--warning);
-}
-
-.toast-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.toast-message {
-  font-size: 13px;
-  flex: 1;
-}
-
-.toast-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: currentColor;
-  animation: progress-bar linear forwards;
-}
-
-@keyframes progress-bar {
-  from { width: 100%; }
-  to { width: 0%; }
-}
-
-.toast-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: var(--text-muted);
-}
-
-/* ========== AI ASSISTANT ========== */
-.ai-button {
-  position: fixed;
-  bottom: 80px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--saffron);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-4);
-  z-index: 140;
-  transition: all 200ms var(--ease-standard);
-  animation: pulse-ring 2s infinite;
-}
-
-.ai-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(255,153,51,0.3);
-}
-
-.ai-panel {
-  position: fixed;
-  bottom: 60px;
-  right: 0;
-  width: 100%;
-  max-width: 400px;
-  height: 500px;
-  background: white;
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-  display: none;
-  flex-direction: column;
-  z-index: 160;
-  transition: transform 300ms ease;
-}
-
-[data-theme="dark"] .ai-panel {
-  background: var(--surface-0);
-}
-
-.ai-panel.active {
-  display: flex;
-}
-
-.ai-header {
-  background: var(--gov-blue);
-  color: white;
-  padding: 16px;
-  border-radius: 16px 16px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.ai-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-}
-
-.ai-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.ai-status {
-  font-size: 11px;
-  opacity: 0.8;
-}
-
-.ai-close {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 0;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 200ms var(--ease-standard);
-}
-
-.ai-close:hover {
-  transform: rotate(90deg);
-}
-
-.ai-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.ai-message {
-  display: flex;
-  gap: 8px;
-  animation: fadeInUp 300ms var(--ease-decelerate);
-}
-
-.ai-message.user {
-  justify-content: flex-end;
-}
-
-.ai-message-text {
-  max-width: 85%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.ai-message.bot .ai-message-text {
-  background: var(--surface-2);
-  border-radius: 12px 12px 12px 4px;
-  color: var(--text-primary);
-}
-
-[data-theme="dark"] .ai-message.bot .ai-message-text {
-  background: var(--surface-1);
-}
-
-.ai-message.user .ai-message-text {
-  background: var(--gov-blue);
-  color: white;
-  border-radius: 12px 4px 12px 12px;
-}
-
-.ai-input-area {
-  padding: 12px 16px;
-  border-top: 1px solid var(--surface-3);
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.ai-input {
-  flex: 1;
-  padding: 10px 12px;
-  border: 1px solid var(--surface-3);
-  border-radius: var(--r-md);
-  font-size: 13px;
-  font-family: inherit;
-  outline: none;
-  transition: all 200ms var(--ease-standard);
-}
-
-.ai-input:focus {
-  border-color: var(--gov-blue);
-  box-shadow: 0 0 0 3px rgba(0,53,128,0.1);
-}
-
-.ai-send {
-  background: var(--saffron);
-  color: white;
-  border: none;
-  border-radius: var(--r-md);
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 200ms var(--ease-standard);
-}
-
-.ai-send:hover {
-  background: #E67E22;
-  transform: translateY(-1px);
-}
-
-/* ========== FOOTER ========== */
-.footer {
-  background: var(--gov-blue-dark);
-  color: white;
-  padding: 40px 20px 20px;
-  margin-top: 60px;
-}
-
-.footer-top {
-  background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, white 33.33%, white 66.66%, #138808 66.66%, #138808 100%);
-  height: 4px;
-  margin: -40px -20px 40px -20px;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  margin-bottom: 30px;
-}
-
-.footer-section h3 {
-  font-size: 16px;
-  margin-bottom: 16px;
-  color: var(--saffron);
-  border-bottom: 2px solid var(--saffron);
-  padding-bottom: 8px;
-  display: inline-block;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 13px;
-}
-
-.footer-links a {
-  color: rgba(255,255,255,0.75);
-  transition: color 200ms var(--ease-standard);
-}
-
-.footer-links a:hover {
-  color: white;
-  text-decoration: none;
-}
-
-.footer-info {
-  font-size: 12px;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.8;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  text-align: center;
-  font-size: 11px;
-  color: rgba(255,255,255,0.7);
-}
-
-/* ========== MOBILE BOTTOM NAV ========== */
-.bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: white;
-  border-top: var(--border);
-  box-shadow: 0 -2px 8px rgba(0,53,128,0.08);
-  z-index: 1000;
-}
-
-[data-theme="dark"] .bottom-nav {
-  background: var(--surface-0);
-}
-
-.bottom-nav-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  cursor: pointer;
-  position: relative;
-  color: var(--text-muted);
-  font-size: 10px;
-  font-weight: 500;
-  transition: all 150ms var(--ease-standard);
-}
-
-.bottom-nav-item:active {
-  transform: scale(0.9);
-}
-
-.bottom-nav-item.active {
-  color: var(--saffron);
-}
-
-.bottom-nav-item.active::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  width: 4px;
-  height: 4px;
-  background: var(--saffron);
-  border-radius: 50%;
-}
-
-.bottom-nav-icon {
-  font-size: 24px;
-}
-
-@media (max-width: 767px) {
-  .bottom-nav {
-    display: flex;
-  }
-  body {
-    padding-bottom: 68px;
-  }
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 768px) {
-  .navbar-search {
-    display: none;
-  }
-  
-  .navbar-utility-left .announcement {
-    max-width: 200px;
-  }
-  
-  .hero {
-    padding: 30px 16px;
-  }
-  
-  .hero-title {
-    font-size: 24px;
-  }
-  
-  .service-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal {
-    max-width: 95vw;
-    max-height: 80vh;
-  }
-  
-  .ai-panel {
-    max-width: 100%;
-    border-radius: 16px 16px 0 0;
-  }
-  
-  .ai-button {
-    bottom: 70px;
-    width: 48px;
-    height: 48px;
-  }
-}
-
-/* ========== UTILITIES ========== */
-.hidden {
-  display: none !important;
-}
-
-.container-max {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 1: CSS DESIGN SYSTEM */
+    :root {
+      --saffron: #FF9933;
+      --saffron-dark: #E65C00;
+      --saffron-light: #FFF3E0;
+      --india-green: #138808;
+      --india-green-light: #E8F5E9;
+      --ashoka-blue: #000080;
+      --gov-blue: #003580;
+      --gov-blue-dark: #001d4a;
+      --gov-blue-mid: #1E4DB7;
+      --gov-blue-light: #E8F0FE;
+      --gov-blue-soft: #F0F4FF;
+      --bs-primary: #003580;
+      --bs-success: #2E7D32;
+      --bs-danger: #C62828;
+      --bs-warning: #F57F17;
+      --bs-info: #01579B;
+      --danger-bg: #FFEBEE; --danger-border: #EF9A9A; --danger-text: #B71C1C;
+      --warning-bg: #FFFDE7; --warning-border: #FFE082; --warning-text: #E65100;
+      --success-bg: #E8F5E9; --success-border: #A5D6A7; --success-text: #1B5E20;
+      --info-bg: #E3F2FD; --info-border: #90CAF9; --info-text: #0D47A1;
+      --surface-0: #FFFFFF;
+      --surface-1: #F8F9FF;
+      --surface-2: #F0F2FA;
+      --surface-3: #E8EAF6;
+      --surface-4: #E1E4F0;
+      --text-primary: #0D0D2B;
+      --text-secondary: #3D3D5C;
+      --text-muted: #6B7280;
+      --text-on-dark: #FFFFFF;
+      --shadow-1: 0 1px 3px rgba(0,53,128,.10),0 1px 2px rgba(0,53,128,.06);
+      --shadow-2: 0 4px 6px rgba(0,53,128,.12),0 2px 4px rgba(0,53,128,.08);
+      --shadow-3: 0 10px 20px rgba(0,53,128,.15),0 3px 6px rgba(0,53,128,.08);
+      --shadow-4: 0 20px 40px rgba(0,53,128,.20),0 8px 16px rgba(0,53,128,.10);
+      --shadow-saffron: 0 4px 16px rgba(255,153,51,.40);
+      --ease-standard: cubic-bezier(0.2,0,0,1);
+      --ease-decelerate: cubic-bezier(0,0,0.2,1);
+      --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);
+      --dur-xs: 100ms; --dur-sm: 200ms; --dur-md: 350ms; --dur-lg: 500ms; --dur-xl: 700ms;
+      --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-full: 9999px;
+    }
+    [data-theme="dark"] {
+      --surface-0: #0F1117; --surface-1: #161B2E; --surface-2: #1E2540;
+      --surface-3: #252D4A; --surface-4: #2D3660;
+      --text-primary: #E8EAFF; --text-secondary: #9BA3CC; --text-muted: #6B7299;
+      --gov-blue-light: #0D1533; --gov-blue-soft: #111830;
+      --saffron-light: #2A1800; --india-green-light: #0A1F0A;
+      --shadow-1: 0 1px 3px rgba(0,0,0,.4); --shadow-2: 0 4px 6px rgba(0,0,0,.4);
+      --shadow-3: 0 10px 20px rgba(0,0,0,.5); --shadow-4: 0 20px 40px rgba(0,0,0,.6);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans','Noto Sans Devanagari',sans-serif; background: var(--surface-2); color: var(--text-primary); font-size: 15px; line-height: 1.6; transition: background var(--dur-md) var(--ease-standard), color var(--dur-md) var(--ease-standard); }
+    h1,h2,h3,.brand-text { font-family:'Rajdhani','Noto Sans',sans-serif; font-weight: 700; }
+    .ripple-host { position:relative; overflow:hidden; }
+    .ripple-host::after { content:''; position:absolute; border-radius:50%; background:rgba(255,255,255,0.35); width:0; height:0; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); transition:width .5s var(--ease-decelerate), height .5s var(--ease-decelerate), opacity .4s var(--ease-standard); opacity:0; pointer-events:none; }
+    .ripple-host:active::after { width:200px; height:200px; opacity:1; }
+    .tricolor-strip { height:4px; width:100%; background:linear-gradient(90deg, var(--saffron) 33.3%, #fff 33.3% 66.6%, var(--india-green) 66.6%); }
+    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+    .skeleton { background:linear-gradient(90deg, var(--surface-3) 25%, var(--surface-4) 50%, var(--surface-3) 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; border-radius:var(--r-sm); }
+    @keyframes chakra-spin { to { transform:rotate(360deg); } }
+    .chakra-spin { animation:chakra-spin 10s linear infinite; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity var(--dur-lg) var(--ease-decelerate), transform var(--dur-lg) var(--ease-decelerate); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .card-lift { transition:transform var(--dur-sm) var(--ease-standard), box-shadow var(--dur-sm) var(--ease-standard); }
+    .card-lift:hover { transform:translateY(-4px); box-shadow:var(--shadow-3); }
+    @keyframes marquee { from { transform:translateX(100%); } to { transform:translateX(-100%); } }
+    .marquee { overflow:hidden; white-space:nowrap; }
+    .marquee-content { display:inline-block; animation:marquee 15s linear infinite; padding-left:100%; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 2: NAVBAR */
+    .utility-bar { background: var(--gov-blue-dark); color: white; font-size: 11px; padding: 6px 16px; letter-spacing: 0.3px; display: flex; align-items: center; gap: 12px; height: 36px; }
+    .utility-bar-left, .utility-bar-right { display: flex; align-items: center; gap: 12px; }
+    .utility-bar-separator { color: rgba(255,255,255,0.4); }
+    .utility-bar-marquee { flex: 1; overflow: hidden; text-align: center; color: #FFD700; }
+    .lang-toggles, .font-toggles { display: flex; gap: 6px; }
+    .lang-btn, .font-btn { background: transparent; border: 1px solid white; color: white; padding: 2px 8px; border-radius: var(--r-xs); cursor: pointer; font-size: 10px; transition: all var(--dur-sm); }
+    .lang-btn.active, .font-btn.active { background: white; color: var(--gov-blue-dark); }
+    .live-clock { font-family: 'Courier New', monospace; margin-left: 16px; }
+    
+    .navbar-main { background: var(--surface-0); padding: 12px 16px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-1); height: 64px; }
+    .emblem-ashoka { width: 42px; height: 42px; flex-shrink: 0; }
+    .navbar-divider { width: 4px; height: 42px; background: var(--surface-3); border-radius: 2px; }
+    .brand-info { display: flex; flex-direction: column; gap: 2px; }
+    .brand-title { font-size: 20px; font-weight: 700; color: var(--gov-blue); font-family: 'Rajdhani', sans-serif; }
+    .brand-location { font-size: 10px; color: var(--text-muted); }
+    .navbar-search-container { flex: 1; max-width: 560px; display: none; }
+    @media (min-width: 1024px) { .navbar-search-container { display: block; } }
+    .navbar-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+    .nav-icon-btn { background: transparent; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); position: relative; }
+    .nav-icon-btn:hover { color: var(--gov-blue); }
+    .badge-dot { position: absolute; top: 0; right: 0; width: 8px; height: 8px; background: var(--saffron); border-radius: 50%; }
+    .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--saffron); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 13px; cursor: pointer; }
+    
+    .authority-strip { background: var(--surface-1); border-bottom: 1px solid var(--gov-blue-light); padding: 8px 16px; display: flex; align-items: center; gap: 12px; height: 48px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .authority-label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .authority-chip { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: white; border: 1px solid var(--gov-blue-light); border-radius: var(--r-full); white-space: nowrap; flex-shrink: 0; }
+    .authority-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 11px; }
+    .authority-name { font-size: 12px; font-weight: 600; color: var(--gov-blue); }
+    .authority-role { font-size: 10px; color: var(--text-muted); }
+    .csc-badge { margin-left: auto; border: 1px solid var(--saffron); color: var(--saffron); padding: 4px 12px; border-radius: var(--r-full); font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 3: HERO */
+    .hero { background: var(--gov-blue); color: white; padding: 32px 16px; display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center; min-height: 260px; }
+    @media (min-width: 1024px) { .hero { grid-template-columns: 60% 40%; } }
+    .hero-content { display: flex; flex-direction: column; gap: 16px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid white; border-radius: var(--r-full); padding: 6px 14px; font-size: 12px; width: fit-content; }
+    .hero-title { font-size: 34px; font-weight: 700; font-family: 'Rajdhani', sans-serif; margin: 0; }
+    .hero-subtitle { font-size: 16px; color: var(--saffron); font-family: 'Rajdhani', sans-serif; margin: 0; }
+    .hero-text { font-size: 14px; opacity: 0.9; }
+    .hero-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stat { background: rgba(255,255,255,0.12); padding: 12px 16px; border-radius: var(--r-full); display: flex; flex-direction: column; gap: 4px; }
+    .hero-stat-value { font-size: 20px; font-weight: 600; font-family: 'Rajdhani', sans-serif; }
+    .hero-stat-label { font-size: 11px; }
+    .hero-visual { display: none; position: relative; height: 260px; }
+    @media (min-width: 1024px) { .hero-visual { display: block; } }
+    .city-skyline { display: flex; align-items: flex-end; justify-content: center; gap: 8px; height: 140px; position: relative; }
+    .building { background: rgba(255,255,255,0.15); border-radius: 4px 4px 0 0; flex-shrink: 0; }
+    .building-1 { width: 20px; height: 100px; }
+    .building-2 { width: 24px; height: 120px; }
+    .building-3 { width: 18px; height: 80px; }
+    .building-4 { width: 22px; height: 100px; }
+    .building-5 { width: 20px; height: 90px; }
+    .feature-pill { position: absolute; background: white; color: var(--gov-blue); padding: 8px 14px; border-radius: var(--r-full); font-size: 11px; font-weight: 600; box-shadow: var(--shadow-1); white-space: nowrap; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 4: QUICK ACCESS */
+    .quick-access { background: var(--saffron-light); border-bottom: 2px solid var(--saffron); padding: 12px 16px; display: flex; align-items: center; gap: 16px; height: 52px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .quick-access-label { font-size: 13px; font-weight: 600; color: var(--gov-blue); font-family: 'Rajdhani', sans-serif; white-space: nowrap; }
+    .quick-chips { display: flex; gap: 8px; flex: 1; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .quick-chips::-webkit-scrollbar { display: none; }
+    .quick-chip { background: white; border: 1px solid var(--gov-blue); color: var(--gov-blue); padding: 6px 14px; border-radius: var(--r-full); font-size: 12px; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all var(--dur-sm); }
+    .quick-chip:hover { background: var(--gov-blue); color: white; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 5: SEARCH */
+    .search-container { width: 100%; max-width: 560px; position: relative; }
+    .search-bar { display: flex; background: white; border-radius: var(--r-xl); height: 52px; align-items: center; padding: 0 16px; gap: 8px; transition: box-shadow var(--dur-sm); }
+    .search-bar:focus-within { box-shadow: 0 0 0 3px rgba(255,153,51,0.4); }
+    .search-icon { font-size: 20px; color: var(--text-muted); }
+    .search-input { flex: 1; border: none; outline: none; font-size: 15px; background: transparent; font-family: inherit; }
+    .search-btn { background: var(--saffron); color: var(--gov-blue); border: none; border-radius: 0 var(--r-xl) var(--r-xl) 0; padding: 0 20px; height: 52px; font-weight: 600; cursor: pointer; transition: all var(--dur-sm); }
+    .search-btn:hover { background: var(--saffron-dark); color: white; }
+    .search-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: var(--r-md); box-shadow: var(--shadow-3); margin-top: 8px; max-height: 400px; overflow-y: auto; z-index: 1000; display: none; }
+    .search-dropdown.active { display: block; }
+    .search-result { padding: 12px 16px; border-bottom: 1px solid var(--surface-3); cursor: pointer; transition: background var(--dur-sm); display: flex; align-items: center; gap: 12px; }
+    .search-result:hover { background: var(--surface-1); }
+    .search-result-category { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .search-result-name { flex: 1; font-weight: 600; font-size: 14px; }
+    .search-result-category-badge { background: var(--gov-blue-light); color: var(--gov-blue); padding: 2px 8px; border-radius: var(--r-xs); font-size: 10px; }
+    .popular-tags { margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .popular-label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .tag-chip { background: transparent; border: 1px solid white; color: white; padding: 4px 12px; border-radius: var(--r-full); font-size: 11px; cursor: pointer; transition: all var(--dur-sm); }
+    .tag-chip:hover { background: white; color: var(--gov-blue); }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 6: CATEGORY GRID */
+    .section-title { font-size: 22px; font-weight: 600; color: var(--gov-blue); font-family: 'Rajdhani', sans-serif; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .view-all-link { color: var(--saffron); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px; }
+    @media (min-width: 640px) { .category-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .category-grid { grid-template-columns: repeat(4, 1fr); } }
+    .category-card { background: white; border: 1px solid var(--surface-4); border-radius: var(--r-lg); padding: 20px; text-align: center; cursor: pointer; card-lift reveal; transition: all var(--dur-sm) var(--ease-standard); }
+    .category-card:hover { border-color: var(--gov-blue); transform: translateY(-4px); box-shadow: var(--shadow-3); }
+    .category-icon-circle { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; transition: all var(--dur-sm); font-size: 28px; }
+    .category-name { font-size: 14px; font-weight: 600; color: var(--gov-blue); margin: 10px 0 8px; }
+    .category-count { background: var(--gov-blue-light); color: var(--gov-blue); padding: 2px 10px; border-radius: var(--r-full); font-size: 11px; display: inline-block; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 7: SERVICE CARDS */
+    .service-grid-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .service-counter { font-size: 14px; color: var(--text-muted); }
+    .sort-dropdown { padding: 6px 12px; border: 1px solid var(--surface-4); border-radius: var(--r-md); font-size: 13px; background: white; cursor: pointer; }
+    .service-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 48px; }
+    @media (min-width: 640px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(3, 1fr); } }
+    .service-card { background: white; border: 1px solid var(--surface-4); border-radius: var(--r-lg); overflow: hidden; cursor: pointer; transition: all var(--dur-sm) var(--ease-standard); }
+    .service-card:hover { box-shadow: var(--shadow-3); transform: translateY(-4px); }
+    .service-top-band { height: 3px; background: var(--saffron); }
+    .service-header { padding: 12px 14px 0; display: flex; justify-content: space-between; align-items: flex-start; }
+    .service-category-badge { background: var(--gov-blue-light); color: var(--gov-blue); padding: 3px 8px; border-radius: var(--r-xs); font-size: 10px; }
+    .bookmark-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); transition: all var(--dur-sm); }
+    .bookmark-btn.saved { color: var(--saffron); }
+    .service-portal-badge { padding: 8px 14px; font-size: 10px; font-weight: 600; color: white; border-radius: var(--r-xs); background: var(--gov-blue); margin-bottom: 6px; }
+    .service-body { padding: 0 14px 12px; }
+    .service-name { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 600; color: var(--gov-blue); margin-top: 6px; }
+    .service-description { font-size: 13px; color: var(--text-secondary); margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .service-divider { height: 1px; background: var(--surface-3); margin: 0; }
+    .service-footer { padding: 10px 14px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .fee-chip { padding: 3px 10px; border-radius: var(--r-full); font-size: 10px; font-weight: 600; }
+    .fee-free { background: var(--success-bg); color: var(--success-text); }
+    .fee-paid { background: var(--warning-bg); color: var(--warning-text); }
+    .time-chip { background: var(--info-bg); color: var(--info-text); padding: 3px 10px; border-radius: var(--r-full); font-size: 10px; }
+    .difficulty-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    .difficulty-easy { background: var(--success-text); }
+    .difficulty-medium { background: var(--warning-text); }
+    .difficulty-hard { background: var(--danger-text); }
+    .details-link { margin-left: auto; color: var(--saffron); font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: none; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 8: FILTER PANEL */
+    .filter-panel { background: white; border-radius: var(--r-lg); box-shadow: var(--shadow-1); padding: 16px; display: none; position: sticky; top: 80px; max-height: 80vh; overflow-y: auto; width: 260px; flex-shrink: 0; }
+    @media (min-width: 1024px) { .filter-panel { display: block; } }
+    .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .filter-title { font-size: 16px; font-weight: 600; color: var(--gov-blue); font-family: 'Rajdhani', sans-serif; }
+    .filter-reset { color: var(--saffron); cursor: pointer; font-size: 12px; text-decoration: underline; }
+    .filter-section { margin-bottom: 20px; border-bottom: 1px solid var(--surface-3); padding-bottom: 16px; }
+    .filter-section:last-child { border-bottom: none; }
+    .filter-section-title { font-size: 13px; font-weight: 600; color: var(--gov-blue); margin-bottom: 12px; cursor: pointer; }
+    .filter-item { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .filter-checkbox { width: 18px; height: 18px; border: 2px solid var(--surface-4); border-radius: var(--r-xs); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--dur-sm) var(--ease-bounce); }
+    .filter-checkbox.checked { background: var(--gov-blue); border-color: var(--gov-blue); color: white; font-size: 12px; }
+    .filter-label { font-size: 13px; cursor: pointer; flex: 1; }
+    .filter-count { font-size: 11px; color: var(--text-muted); }
+    .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .filter-pill { padding: 6px 12px; border-radius: var(--r-full); font-size: 12px; cursor: pointer; border: 1px solid var(--surface-4); background: white; transition: all var(--dur-sm); }
+    .filter-pill.active { background: var(--gov-blue); color: white; border-color: var(--gov-blue); }
+    .filter-apply { width: 100%; background: var(--gov-blue); color: white; border: none; padding: 12px; border-radius: var(--r-md); cursor: pointer; font-weight: 600; font-family: 'Rajdhani', sans-serif; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 9: SERVICE DETAIL */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; display: none; animation: fadeIn var(--dur-md); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-overlay.active { display: block; }
+    .service-detail-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 100%; max-width: 520px; background: white; z-index: 1000; display: flex; flex-direction: column; transform: translateX(100%); transition: transform var(--dur-md) var(--ease-decelerate); box-shadow: var(--shadow-4); }
+    .service-detail-panel.active { transform: translateX(0); }
+    @media (max-width: 768px) { .service-detail-panel { max-width: 100%; } }
+    .detail-header { background: linear-gradient(135deg, var(--gov-blue) 0%, var(--gov-blue-mid) 100%); color: white; padding: 24px 20px; position: relative; overflow: hidden; }
+    .detail-header::before { content: ''; position: absolute; top: 0; right: -50px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.05); }
+    .detail-close-btn { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.2); border: none; width: 32px; height: 32px; border-radius: 50%; color: white; cursor: pointer; font-size: 20px; }
+    .detail-badges { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; font-size: 11px; }
+    .detail-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: var(--r-xs); }
+    .detail-service-name { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+    .detail-description { font-size: 13px; opacity: 0.9; }
+    .detail-subheader { display: flex; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--surface-3); flex-wrap: wrap; }
+    .action-btn { background: var(--saffron); color: var(--gov-blue); border: none; padding: 10px 16px; border-radius: var(--r-full); font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0; transition: all var(--dur-sm); }
+    .action-btn:hover { background: var(--saffron-dark); color: white; }
+    .action-btn.outline { background: transparent; border: 1px solid var(--gov-blue); color: var(--gov-blue); }
+    .fee-summary { display: flex; gap: 12px; margin-left: auto; flex-wrap: wrap; }
+    .fee-metric { background: var(--surface-1); padding: 8px 14px; border-radius: var(--r-md); font-size: 13px; }
+    .fee-metric-value { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 16px; color: var(--gov-blue); }
+    .tab-bar { display: flex; border-bottom: 1px solid var(--surface-3); padding: 0 20px; gap: 16px; position: relative; }
+    .tab { padding: 16px 0; background: none; border: none; cursor: pointer; font-size: 14px; color: var(--text-muted); font-weight: 500; position: relative; white-space: nowrap; }
+    .tab.active { color: var(--gov-blue); }
+    .tab-indicator { position: absolute; bottom: 0; height: 3px; background: var(--saffron); transition: all var(--dur-sm) var(--ease-standard); }
+    .tab-content { flex: 1; overflow-y: auto; padding: 20px; display: none; }
+    .tab-content.active { display: block; animation: fadeIn var(--dur-sm); }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 10: DOCUMENT PREVIEW */
+    .doc-preview-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; background: white; border-radius: var(--r-lg); box-shadow: var(--shadow-4); width: 90%; max-width: 360px; z-index: 1001; transition: all var(--dur-md) var(--ease-decelerate); pointer-events: none; }
+    .doc-preview-modal.active { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
+    .doc-preview-header { padding: 12px 16px; border-bottom: 1px solid var(--surface-3); display: flex; gap: 12px; align-items: center; }
+    .doc-preview-back { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--gov-blue); }
+    .doc-preview-name { flex: 1; font-weight: 600; font-size: 14px; text-align: center; }
+    .doc-preview-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); }
+    .doc-preview-content { padding: 24px; background: var(--surface-1); display: flex; justify-content: center; align-items: center; min-height: 300px; }
+    .doc-svg { width: 100%; max-width: 280px; height: auto; }
+    .doc-preview-info { padding: 16px; border-top: 1px solid var(--surface-3); }
+    .doc-required-badge { display: inline-block; padding: 4px 10px; border-radius: var(--r-full); font-size: 11px; margin-bottom: 8px; }
+    .doc-format { font-size: 13px; margin: 8px 0; color: var(--text-secondary); }
+    
+    /* ═══════════════════════════════════════════════════════════════ UPGRADE 13: AI ASSISTANT */
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(255,153,51,0.6); } 70% { box-shadow: 0 0 0 18px rgba(255,153,51,0); } 100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); } }
+    @keyframes dot-bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } }
+    .ai-button { position: fixed; bottom: 24px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: var(--gov-blue); border: none; color: white; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-saffron); animation: pulse-ring 2.5s ease-out infinite; z-index: 500; transition: all var(--dur-sm); display: flex; align-items: center; justify-content: center; }
+    .ai-button:hover { transform: scale(1.1); }
+    .ai-panel { position: fixed; bottom: 90px; right: 20px; width: 380px; background: white; border-radius: var(--r-lg); box-shadow: var(--shadow-4); display: none; flex-direction: column; max-height: 500px; z-index: 510; animation: scaleIn var(--dur-md) var(--ease-bounce); }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+    .ai-panel.active { display: flex; }
+    @media (max-width: 768px) { .ai-panel { bottom: 60px; right: 10px; left: 10px; width: auto; max-height: 60vh; } .ai-button { bottom: 70px; } }
+    .ai-header { background: var(--gov-blue); color: white; padding: 16px; border-radius: var(--r-lg) var(--r-lg) 0 0; display: flex; justify-content: space-between; align-items: center; }
+    .ai-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--saffron); display: flex; align-items: center; justify-content: center; color: white; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; margin-right: 10px; }
+    .ai-header-info { flex: 1; }
+    .ai-title { font-size: 15px; font-weight: 600; margin: 0; }
+    .ai-status { font-size: 11px; opacity: 0.8; }
+    .ai-close { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+    .ai-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--surface-1); }
+    .ai-message { display: flex; gap: 8px; align-items: flex-start; }
+    .ai-message.user { justify-content: flex-end; }
+    .ai-bubble { background: white; padding: 10px 14px; border-radius: 0 var(--r-md) var(--r-md) var(--r-md); box-shadow: var(--shadow-1); max-width: 85%; font-size: 14px; line-height: 1.4; }
+    .ai-message.user .ai-bubble { background: var(--gov-blue); color: white; border-radius: var(--r-md) 0 var(--r-md) var(--r-md); }
+    .ai-quick-prompts { padding: 12px 16px; border-top: 1px solid var(--surface-3); display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .ai-quick-prompts::-webkit-scrollbar { display: none; }
+    .ai-prompt-chip { background: var(--gov-blue-light); color: var(--gov-blue); border: none; padding: 6px 12px; border-radius: var(--r-full); font-size: 11px; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all var(--dur-sm); }
+    .ai-prompt-chip:hover { background: var(--gov-blue); color: white; }
+    .ai-input-bar { padding: 12px 16px; border-top: 1px solid var(--surface-3); display: flex; gap: 8px; align-items: center; }
+    .ai-input { flex: 1; border: 1px solid var(--surface-4); border-radius: var(--r-xl); padding: 10px 14px; font-size: 13px; font-family: inherit; outline: none; }
+    .ai-send { background: var(--gov-blue); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all var(--dur-sm); }
+    .ai-send:hover:not(:disabled) { background: var(--gov-blue-dark); }
+    .ai-send:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    /* ═══════════════════════════════════════════════════════════════ UTILITIES */
+    .container-main { max-width: 1400px; margin: 0 auto; padding: 32px 16px; }
+    .service-grid-wrapper { display: flex; gap: 24px; }
+    .service-list-area { flex: 1; min-width: 0; }
+    .hidden { display: none !important; }
+    .toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+    .toast { background: white; padding: 14px 20px; border-radius: var(--r-md); box-shadow: var(--shadow-3); display: flex; gap: 12px; align-items: center; animation: slideIn var(--dur-md) var(--ease-decelerate)); min-width: 300px; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+    .toast.success { border-left: 4px solid var(--success-text); }
+    .toast.error { border-left: 4px solid var(--danger-text); }
+    .toast.info { border-left: 4px solid var(--info-text); }
+    footer { background: var(--gov-blue); color: white; padding: 40px 16px; text-align: center; margin-top: 60px; }
+    footer p { font-size: 13px; opacity: 0.8; margin: 4px 0; }
+    .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 16px 0; }
+    @media (max-width: 1024px) { .service-grid-wrapper { flex-direction: column; } .filter-panel { display: none; } }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR - Tricolor Strip -->
-<div class="navbar-top"></div>
-
-<!-- NAVBAR - Utility Bar -->
-<div class="navbar-utility">
-  <div class="navbar-utility-left">
-    <span style="font-weight: 600;">📢</span>
-    <div class="announcement">
-      <div class="announcement-text" id="announcementText">
-        📢 PM Kisan 19th installment released — Complete eKYC now
+<!-- UPGRADE 2: NAVBAR LAYER 1 -->
+<div class="utility-bar">
+  <div class="utility-bar-left">
+    <span>🇮🇳 Government of Maharashtra</span>
+    <span class="utility-bar-separator">|</span>
+    <span>🇮🇳 Government of India</span>
+    <span class="utility-bar-separator">|</span>
+    <span>Digital India Initiative</span>
+  </div>
+  <div class="utility-bar-marquee">
+    <div class="marquee">
+      <div class="marquee-content">
+        🔔 Aadhaar PVC Card ₹50 | 🔔 PAN-Aadhaar linking mandatory | 🔔 PM Kisan 19th installment released | 🔔 Voter portal open for corrections
       </div>
     </div>
   </div>
-  <div style="display: flex; gap: 12px; align-items: center;">
-    <span>🇮🇳 Government of India</span>
+  <div class="utility-bar-right">
+    <div class="lang-toggles">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="mr">मर</button>
+      <button class="lang-btn" data-lang="hi">हि</button>
+    </div>
+    <div class="font-toggles">
+      <button class="font-btn">A+</button>
+      <button class="font-btn active">A-</button>
+    </div>
+    <div class="live-clock" id="liveTime">10:45:30 AM IST</div>
   </div>
 </div>
 
-<!-- NAVBAR - Main -->
+<div class="tricolor-strip"></div>
+
+<!-- UPGRADE 2: NAVBAR LAYER 2 -->
 <nav class="navbar-main">
-  <a href="#" class="navbar-brand">
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="16" stroke="#003580" stroke-width="2"/>
-      <line x1="18" y1="4" x2="18" y2="14" stroke="#003580" stroke-width="2"/>
-      <line x1="18" y1="22" x2="18" y2="32" stroke="#003580" stroke-width="2"/>
-      <line x1="4" y1="18" x2="14" y2="18" stroke="#003580" stroke-width="2"/>
-      <line x1="22" y1="18" x2="32" y2="18" stroke="#003580" stroke-width="2"/>
-    </svg>
-    Seva Kendra
-  </a>
-  
-  <div class="navbar-search">
-    <input type="text" id="searchInput" placeholder="Search PAN, Aadhaar, Passport...">
+  <svg class="emblem-ashoka" viewBox="0 0 42 42" fill="var(--gov-blue)">
+    <circle cx="21" cy="10" r="4"/>
+    <circle cx="12" cy="14" r="3.5"/>
+    <circle cx="30" cy="14" r="3.5"/>
+    <circle cx="21" cy="28" r="8" fill="none" stroke="var(--gov-blue)" stroke-width="1"/>
+    <circle cx="21" cy="28" r="6" fill="none" stroke="var(--gov-blue)" stroke-width="0.5"/>
+    <g stroke="var(--gov-blue)" stroke-width="0.8">
+      <line x1="21" y1="20" x2="21" y2="14"/><line x1="21" y1="36" x2="21" y2="42"/><line x1="13" y1="28" x2="7" y2="28"/>
+      <line x1="29" y1="28" x2="35" y2="28"/><line x1="15" y1="22" x2="11" y2="18"/><line x1="27" y1="34" x2="31" y2="38"/>
+      <line x1="27" y1="22" x2="31" y2="18"/><line x1="15" y1="34" x2="11" y2="38"/>
+    </g>
+  </svg>
+  <div class="navbar-divider"></div>
+  <div class="brand-info">
+    <div class="brand-title">Digital Seva Kendra</div>
+    <div class="brand-location">Virar · Palghar · Maharashtra</div>
   </div>
-  
-  <div class="navbar-actions">
-    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">☀️</button>
-    <div class="language-switcher">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="mr">MR</button>
-      <button class="lang-btn" data-lang="hi">HI</button>
+  <div class="navbar-search-container">
+    <div class="search-container">
+      <div class="search-bar">
+        <span class="material-icons-round search-icon">search</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search PAN, Aadhaar, Passport...">
+        <button class="search-btn" id="searchBtn">Search</button>
+      </div>
+      <div class="search-dropdown" id="searchDropdown"></div>
     </div>
+  </div>
+  <div class="navbar-actions">
+    <button class="nav-icon-btn" title="Notifications">🔔<span class="badge-dot"></span></button>
+    <button class="nav-icon-btn" id="themeToggle" title="Toggle dark mode">☀️</button>
+    <button class="nav-icon-btn" title="Saved services">★<span style="font-size: 11px; position: absolute; top: 2px; right: -2px; width: 16px; height: 16px; border-radius: 50%; background: var(--saffron); color: white; display: flex; align-items: center; justify-content: center;" id="savedBadge">0</span></button>
+    <div class="user-avatar">GC</div>
   </div>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- UPGRADE 2: NAVBAR LAYER 3 -->
+<div class="authority-strip">
+  <div class="authority-label">Operated under:</div>
+  <div class="authority-chip">
+    <div class="authority-avatar" style="background: linear-gradient(135deg, var(--saffron), var(--saffron-dark));">PM</div>
+    <div><div class="authority-name">Narendra Modi</div><div class="authority-role">Prime Minister</div></div>
+  </div>
+  <div class="authority-chip">
+    <div class="authority-avatar" style="background: var(--india-green);">CM</div>
+    <div><div class="authority-name">Devendra Fadnavis</div><div class="authority-role">CM Maharashtra</div></div>
+  </div>
+  <div class="authority-chip">
+    <div class="authority-avatar" style="background: var(--gov-blue);">MI</div>
+    <div><div class="authority-name">MeitY</div><div class="authority-role">Ministry Electronics & IT</div></div>
+  </div>
+  <div class="authority-chip">
+    <div class="authority-avatar" style="background: var(--ashoka-blue);">NIC</div>
+    <div><div class="authority-name">NIC</div><div class="authority-role">Natl Informatics Centre</div></div>
+  </div>
+  <div class="csc-badge">CSC Authorized Centre</div>
+</div>
+
+<!-- UPGRADE 3: HERO -->
 <section class="hero">
-  <h1 class="hero-title">Digital Seva Kendra — Virar</h1>
-  <p class="hero-subtitle">Expert-guided government service portal for Palghar citizens</p>
-  <div class="hero-search">
-    <input type="text" id="heroSearch" placeholder="Search for government services...">
+  <div class="hero-content">
+    <div class="hero-badge">🏛️ Official Citizen Service Directory · Virar, Palghar</div>
+    <h1 class="hero-title">Digital Seva Kendra</h1>
+    <p class="hero-subtitle">सेवा • सहाय्य • समृद्धी</p>
+    <p class="hero-text">Trusted guides for 34+ government services — Apply right the first time</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-value">34</div><div class="hero-stat-label">Services</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">11</div><div class="hero-stat-label">Categories</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">Free</div><div class="hero-stat-label">Guidance</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div style="position: relative; width: 100%; height: 100%;">
+      <div class="city-skyline">
+        <div class="building building-1"></div>
+        <div class="building building-2"></div>
+        <div class="building building-3"></div>
+        <div class="building building-4"></div>
+        <div class="building building-5"></div>
+      </div>
+      <div class="feature-pill fade-in-up" style="top: 20px; left: 40px;">📱 Mobile-Ready</div>
+      <div class="feature-pill fade-in-up" style="top: 80px; left: 10px;">🔒 Secure Portal</div>
+      <div class="feature-pill fade-in-up" style="top: 140px; right: 30px;">✅ Govt Verified</div>
+      <svg class="chakra-spin" viewBox="0 0 48 48" style="position: absolute; top: 10px; right: 30px; width: 48px; height: 48px;">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="white" stroke-width="2"/>
+        <circle cx="24" cy="24" r="18" fill="none" stroke="white" stroke-width="1"/>
+        <g stroke="white" stroke-width="1.5"><line x1="24" y1="6" x2="24" y2="2"/><line x1="24" y1="46" x2="24" y2="42"/><line x1="6" y1="24" x2="2" y2="24"/><line x1="46" y1="24" x2="42" y2="24"/></g>
+      </svg>
+    </div>
   </div>
 </section>
 
-<!-- QUICK ACCESS -->
-<div class="quick-access" id="quickAccess">
-  <div class="quick-chip" data-service-id="1">🆔 PAN Card</div>
-  <div class="quick-chip" data-service-id="4">📋 Aadhaar</div>
-  <div class="quick-chip" data-service-id="11">✈️ Passport</div>
-  <div class="quick-chip" data-service-id="8">🗳️ Voter ID</div>
-  <div class="quick-chip" data-service-id="15">📚 Scholarship</div>
+<!-- UPGRADE 4: QUICK ACCESS -->
+<div class="quick-access">
+  <div class="quick-access-label">⚡ Quick Access:</div>
+  <div class="quick-chips">
+    <button class="quick-chip">📥 e-Aadhaar</button>
+    <button class="quick-chip">🔗 PAN Link</button>
+    <button class="quick-chip">🗳️ e-EPIC</button>
+    <button class="quick-chip">🚦 Challan Pay</button>
+    <button class="quick-chip">🌾 7/12 Extract</button>
+    <button class="quick-chip">🏢 Udyam Reg</button>
+    <button class="quick-chip">💊 Ayushman</button>
+    <button class="quick-chip">🌾 PM Kisan</button>
+    <button class="quick-chip">💼 PF Claim</button>
+    <button class="quick-chip">🎓 Scholarship</button>
+    <button class="quick-chip">🛂 Passport</button>
+    <button class="quick-chip">📱 DigiLocker</button>
+  </div>
 </div>
 
-<!-- SERVICES SECTION -->
-<section class="services-section">
-  <div class="services-header">
-    <h2>Government Services</h2>
-    <p style="color: var(--text-secondary); font-size: 14px;">Browse 34+ services with complete guidance, documents, and fees</p>
+<!-- UPGRADE 6 & 7 & 8: CATEGORY GRID & SERVICE GRID & FILTER -->
+<div class="container-main">
+  <div class="section-title">
+    Browse by Category
+    <a class="view-all-link">View All Services →</a>
   </div>
-  
-  <div class="filter-bar" id="filterBar"></div>
-  <div class="service-grid" id="serviceGrid"></div>
-</section>
+  <div class="category-grid" id="categoryGrid"></div>
 
-<!-- SERVICE DETAIL MODAL -->
-<div class="modal-overlay" id="detailModal">
-  <div class="modal">
-    <div class="modal-header">
-      <div>
-        <h2 id="modalTitle" style="font-size: 20px; margin: 0;">Service Details</h2>
+  <div class="section-title" style="margin-top: 48px;">All Services</div>
+  <div class="service-grid-wrapper">
+    <div class="filter-panel" id="filterPanel"></div>
+    <div class="service-list-area">
+      <div class="service-grid-header">
+        <div class="service-counter" id="serviceCounter">Showing 34 services</div>
+        <select class="sort-dropdown" id="sortDropdown">
+          <option value="relevance">Relevance</option>
+          <option value="fee-low">Fee: Low→High</option>
+          <option value="time-fast">Time: Fast first</option>
+          <option value="name-asc">A-Z</option>
+        </select>
       </div>
-      <button class="modal-close" id="modalClose">&times;</button>
-    </div>
-    
-    <div class="modal-body">
-      <div class="modal-tabs">
-        <button class="modal-tab active" data-tab="overview">Overview</button>
-        <button class="modal-tab" data-tab="documents">Documents</button>
-        <button class="modal-tab" data-tab="steps">Steps</button>
-        <button class="modal-tab" data-tab="fees">Fees</button>
-        <button class="modal-tab" data-tab="notes">Notes</button>
-      </div>
-      
-      <div id="overviewTab" class="tab-content active">
-        <div id="overviewContent"></div>
-      </div>
-      
-      <div id="documentsTab" class="tab-content">
-        <div id="documentsContent"></div>
-      </div>
-      
-      <div id="stepsTab" class="tab-content">
-        <div id="stepsContent"></div>
-      </div>
-      
-      <div id="feesTab" class="tab-content">
-        <div id="feesContent"></div>
-      </div>
-      
-      <div id="notesTab" class="tab-content">
-        <div id="notesContent"></div>
-      </div>
+      <div class="service-grid" id="serviceGrid"></div>
     </div>
   </div>
 </div>
 
-<!-- AI CHAT BUTTON -->
-<button class="ai-button" id="aiButton" title="Open AI Assistant">🤖</button>
+<!-- UPGRADE 9: SERVICE DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay"></div>
+<div class="service-detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <button class="detail-close-btn" id="detailCloseBtn">×</button>
+    <div class="detail-badges" id="detailBadges"></div>
+    <h2 class="detail-service-name" id="detailName"></h2>
+    <p class="detail-description" id="detailDescription"></p>
+  </div>
+  <div class="detail-subheader" id="detailActions"></div>
+  <div class="tab-bar" id="tabBar"></div>
+  <div id="tabContents"></div>
+</div>
 
-<!-- AI CHAT PANEL -->
+<!-- UPGRADE 10: DOCUMENT PREVIEW -->
+<div class="doc-preview-modal" id="docPreviewModal">
+  <div class="doc-preview-header">
+    <button class="doc-preview-back" id="docPreviewBack">←</button>
+    <div class="doc-preview-name" id="docPreviewName"></div>
+    <button class="doc-preview-close" id="docPreviewClose">×</button>
+  </div>
+  <div class="doc-preview-content" id="docPreviewContent"></div>
+  <div class="doc-preview-info" id="docPreviewInfo"></div>
+</div>
+
+<!-- UPGRADE 13: AI ASSISTANT -->
+<button class="ai-button" id="aiButton" title="Seva AI Assistant">🤖</button>
 <div class="ai-panel" id="aiPanel">
   <div class="ai-header">
-    <div class="ai-title">
-      <div class="ai-avatar">🤖</div>
-      <div>
-        <div style="font-size: 14px; font-weight: 600;">Seva AI</div>
+    <div style="display: flex; align-items: center;">
+      <div class="ai-avatar">AI</div>
+      <div class="ai-header-info">
+        <div class="ai-title">Seva AI Assistant</div>
         <div class="ai-status">🟢 Online</div>
       </div>
     </div>
-    <button class="ai-close" id="aiClose">✕</button>
+    <button class="ai-close" id="aiCloseBtn">×</button>
   </div>
-  
-  <div class="ai-messages" id="aiMessages">
-    <div class="ai-message bot">
-      <div class="ai-message-text">🙏 नमस्कार! I'm your Seva AI assistant. Ask me about PAN, Aadhaar, Passport, Voter ID, or any of our 34+ services.</div>
-    </div>
-  </div>
-  
-  <div class="ai-input-area">
-    <input type="text" class="ai-input" id="aiInput" placeholder="Ask about any service...">
-    <button class="ai-send" id="aiSend">Send</button>
+  <div class="ai-messages" id="aiMessages"></div>
+  <div class="ai-quick-prompts" id="aiQuickPrompts"></div>
+  <div class="ai-input-bar">
+    <input type="text" class="ai-input" id="aiInput" placeholder="Ask me anything...">
+    <button class="ai-send" id="aiSend">↗</button>
   </div>
 </div>
 
-<!-- TOAST CONTAINER -->
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- MOBILE BOTTOM NAVIGATION -->
-<div class="bottom-nav">
-  <div class="bottom-nav-item active" data-action="home">
-    <span class="material-icons-round bottom-nav-icon">home</span>
-    <span>Home</span>
-  </div>
-  <div class="bottom-nav-item" data-action="search">
-    <span class="material-icons-round bottom-nav-icon">search</span>
-    <span>Search</span>
-  </div>
-  <div class="bottom-nav-item" data-action="services">
-    <span class="material-icons-round bottom-nav-icon">grid_view</span>
-    <span>Services</span>
-  </div>
-  <div class="bottom-nav-item" data-action="saved">
-    <span class="material-icons-round bottom-nav-icon">bookmark</span>
-    <span>Saved</span>
-  </div>
-  <div class="bottom-nav-item" data-action="ai">
-    <span class="material-icons-round bottom-nav-icon">smart_toy</span>
-    <span>AI</span>
-  </div>
-</div>
-
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-top"></div>
-  <div class="footer-content">
-    <div class="footer-section">
-      <h3 style="border-bottom-color: var(--saffron);">Digital Seva Kendra</h3>
-      <p class="footer-info">
-        Virar (East), Palghar District<br>
-        Maharashtra — 401305<br>
-        <br>
-        🕐 Mon–Sat: 9 AM – 6 PM<br>
-        📍 Near Virar Railway Station East
-      </p>
-    </div>
-    
-    <div class="footer-section">
-      <h3 style="border-bottom-color: var(--saffron);">Quick Links</h3>
-      <div class="footer-links">
-        <a href="#services">All Services</a>
-        <a href="#saved">Saved Services</a>
-        <a href="#ai">AI Assistant</a>
-        <a href="#about">About Portal</a>
-        <a href="#disclaimer">Disclaimer</a>
-        <a href="#privacy">Privacy Policy</a>
-      </div>
-    </div>
-    
-    <div class="footer-section">
-      <h3 style="border-bottom-color: var(--saffron);">Contact</h3>
-      <p class="footer-info">
-        📞 +91 98765 43210<br>
-        📧 support@sevakendra.in<br>
-        <br>
-        <strong>Powered by Digital India Initiative</strong><br>
-        Under MeitY & NIC
-      </p>
-    </div>
-  </div>
-  
-  <div class="footer-bottom">
-    <p>© 2025 Digital Seva Kendra, Virar. All rights reserved. | 🇮🇳 Jai Hind • जय हिंद</p>
-  </div>
+<footer>
+  <p><strong>Digital Seva Kendra</strong> — Virar, Palghar, Maharashtra</p>
+  <div class="footer-divider"></div>
+  <p>📞 +91 98765 43210 | 🕐 Mon–Sat 9:00 AM – 6:00 PM IST</p>
+  <p>🏛️ Government of Maharashtra | 🇮🇳 Government of India</p>
+  <p style="font-size: 11px; margin-top: 16px; opacity: 0.6;">All services listed are verified government programs. No unauthorized fees or commissions.</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// ========== SERVICE DATA ==========
-const services = [
-  {
-    id: 1, name: "PAN Card – New Application",
-    category: "Identity Documents",
-    description: "Apply for a new Permanent Account Number card via NSDL portal",
-    fee: 107, feeType: "paid", feeDisplay: "₹107",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "easy",
-    mode: "online",
-    portal: "NSDL e-Gov", portalUrl: "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
-    tags: ["pan", "income tax", "nsdl", "form 49a"],
-    lastVerified: "April 2025",
-    eligibility: "Any Indian citizen, resident or non-resident",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "For eKYC"},
-      {name: "Passport Photo", required: true, note: "Recent, white background"},
-      {name: "Date of Birth Proof", required: true, note: "10th certificate or birth certificate"},
-      {name: "Address Proof", required: false, note: "If Aadhaar address differs"}
-    ],
-    steps: [
-      {title: "Open NSDL Portal", desc: "Go to NSDL PAN portal and click 'New PAN – Indian Citizen (Form 49A)'"},
-      {title: "Fill Form 49A", desc: "Enter personal details exactly as on Aadhaar. Name spelling must match."},
-      {title: "Upload Documents", desc: "Upload scanned Aadhaar, photo (< 50KB JPG), and DOB proof"},
-      {title: "Pay ₹107 Online", desc: "Pay via net banking, UPI, or debit/credit card"},
-      {title: "Complete eKYC", desc: "Enter Aadhaar OTP for biometric verification"},
-      {title: "Download Acknowledgement", desc: "Save 15-digit token number for tracking"},
-      {title: "Receive e-PAN", desc: "e-PAN delivered to registered email within 48 hours"}
-    ],
-    fees: [{component: "Government Fee", amount: "₹107", note: "Includes GST"}],
-    notes: [
-      {type: "danger", text: "Name must EXACTLY match your Aadhaar card."},
-      {type: "success", text: "e-PAN delivered within 48 hours. Physical card in 7–15 days."}
-    ]
-  },
-  {
-    id: 2, name: "PAN Card – Correction / Reprint",
-    category: "Identity Documents",
-    description: "Correct details or get a reprint of your existing PAN card",
-    fee: 107, feeType: "paid", feeDisplay: "₹107",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "online",
-    portal: "NSDL e-Gov", portalUrl: "https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html",
-    tags: ["pan", "correction", "reprint", "name change"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Existing PAN Card", required: true, note: "Current PAN number mandatory"},
-      {name: "Aadhaar Card", required: true, note: "For identity verification"},
-      {name: "Proof of Correction", required: true, note: "E.g., gazette for name change"}
-    ],
-    steps: [
-      {title: "Open NSDL Portal", desc: "Select 'Changes or Correction in existing PAN'"},
-      {title: "Enter PAN Number", desc: "Enter your existing 10-digit PAN"},
-      {title: "Select Fields to Correct", desc: "Tick only the fields you want to change"},
-      {title: "Upload Proof", desc: "Upload supporting document"},
-      {title: "Pay ₹107", desc: "Complete payment online"}
-    ],
-    fees: [{component: "Government Fee", amount: "₹107", note: "Same as new PAN"}],
-    notes: [
-      {type: "danger", text: "For name change: upload gazette notification AND marriage certificate."}
-    ]
-  },
-  {
-    id: 3, name: "Aadhaar–PAN Linking",
-    category: "Identity Documents",
-    description: "Link your Aadhaar number to PAN card",
-    fee: 0, feeType: "free", feeDisplay: "Free (post-linking)",
-    time: "4–5 days", timeCategory: "1to7",
-    difficulty: "medium", mode: "online",
-    portal: "Income Tax Portal", portalUrl: "https://www.incometax.gov.in",
-    tags: ["pan", "aadhaar", "link", "income tax"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "PAN Card", required: true, note: "10-digit PAN number"},
-      {name: "Aadhaar Card", required: true, note: "12-digit Aadhaar number"},
-      {name: "Aadhaar-linked Mobile", required: true, note: "For OTP"}
-    ],
-    steps: [
-      {title: "Login to IT Portal", desc: "Go to incometax.gov.in and login with PAN"},
-      {title: "Go to Services > Link Aadhaar", desc: "Find in the top navigation"},
-      {title: "Enter PAN + Aadhaar", desc: "Enter both numbers and your name"},
-      {title: "Verify with OTP", desc: "OTP sent to Aadhaar-linked mobile"}
-    ],
-    fees: [{component: "Linking Fee", amount: "Free", note: ""}],
-    notes: [
-      {type: "danger", text: "PAN becomes inoperative if not linked within deadline."}
-    ]
-  },
-  {
-    id: 4, name: "Aadhaar Address Update (Online)",
-    category: "Identity Documents",
-    description: "Update your residential address in Aadhaar using myAadhaar portal",
-    fee: 50, feeType: "paid", feeDisplay: "₹50",
-    time: "2–5 days", timeCategory: "1to7",
-    difficulty: "easy", mode: "online",
-    portal: "myAadhaar UIDAI", portalUrl: "https://myaadhaar.uidai.gov.in",
-    tags: ["aadhaar", "address", "update", "uidai"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "Your 12-digit Aadhaar"},
-      {name: "Aadhaar-linked Mobile", required: true, note: "For login OTP"},
-      {name: "Address Proof", required: true, note: "Any one valid document"}
-    ],
-    steps: [
-      {title: "Login to myAadhaar", desc: "Go to myaadhaar.uidai.gov.in and login with Aadhaar + OTP"},
-      {title: "Click Update Address", desc: "Find under 'Update Aadhaar' section"},
-      {title: "Enter New Address", desc: "Fill complete address with PIN code"},
-      {title: "Upload Address Proof", desc: "Upload scanned copy (< 2MB, JPG/PDF)"},
-      {title: "Pay ₹50", desc: "Pay online via UPI or net banking"}
-    ],
-    fees: [{component: "UIDAI Update Fee", amount: "₹50", note: "Per update"}],
-    notes: [
-      {type: "info", text: "Valid proofs: Bank passbook, Voter ID, Electricity bill, Rent agreement, Passport."}
-    ]
-  },
-  {
-    id: 5, name: "Aadhaar Mobile Number Update",
-    category: "Identity Documents",
-    description: "Update mobile number linked to Aadhaar at Aadhaar centre",
-    fee: 50, feeType: "paid", feeDisplay: "₹50",
-    time: "Same Day", timeCategory: "sameday",
-    difficulty: "easy", mode: "offline",
-    portal: "UIDAI Appointment", portalUrl: "https://appointments.uidai.gov.in",
-    tags: ["aadhaar", "mobile", "number", "update", "centre"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "Original Aadhaar"},
-      {name: "New Active SIM", required: true, note: "New mobile number SIM"}
-    ],
-    steps: [
-      {title: "Book Appointment (Optional)", desc: "Book at appointments.uidai.gov.in"},
-      {title: "Visit Nearest Aadhaar Centre", desc: "Carry original Aadhaar and new SIM"},
-      {title: "Submit Update Request", desc: "Fill the update form at the counter"},
-      {title: "Biometric Scan", desc: "Fingerprint or iris scan for verification"},
-      {title: "OTP Verification", desc: "OTP sent to new number for confirmation"}
-    ],
-    fees: [{component: "Centre Fee", amount: "₹50", note: "Paid at Aadhaar centre"}],
-    notes: [
-      {type: "danger", text: "This CANNOT be done online. You must physically visit an Aadhaar Enrolment Centre."}
-    ]
-  },
-  {
-    id: 6, name: "e-Aadhaar Download",
-    category: "Identity Documents",
-    description: "Download your Aadhaar card as a password-protected PDF instantly",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "Instant", timeCategory: "instant",
-    difficulty: "easy", mode: "online",
-    portal: "UIDAI myAadhaar", portalUrl: "https://myaadhaar.uidai.gov.in/genricDownloadAadhaar",
-    tags: ["aadhaar", "download", "e-aadhaar", "pdf"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Number or VID", required: true, note: "12-digit Aadhaar or 16-digit VID"},
-      {name: "Aadhaar-linked Mobile", required: true, note: "For OTP"}
-    ],
-    steps: [
-      {title: "Open Download Portal", desc: "Visit UIDAI e-Aadhaar download page"},
-      {title: "Enter Aadhaar/VID", desc: "Enter your 12-digit Aadhaar or 16-digit VID"},
-      {title: "Enter Captcha", desc: "Fill the security captcha"},
-      {title: "Request OTP", desc: "OTP sent to Aadhaar-linked mobile"},
-      {title: "Download PDF", desc: "Enter OTP and download password-protected PDF"}
-    ],
-    fees: [{component: "Download Fee", amount: "Free", note: ""}],
-    notes: [
-      {type: "info", text: "PDF Password = First 4 letters of name in CAPS + birth year."}
-    ]
-  },
-  {
-    id: 7, name: "Aadhaar PVC Card Order",
-    category: "Identity Documents",
-    description: "Order a durable PVC Aadhaar card delivered by Speed Post",
-    fee: 50, feeType: "paid", feeDisplay: "₹50",
-    time: "5–7 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "online",
-    portal: "myAadhaar UIDAI", portalUrl: "https://myaadhaar.uidai.gov.in",
-    tags: ["aadhaar", "pvc", "card", "post", "physical"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Number", required: true, note: "For login"},
-      {name: "Aadhaar-linked Mobile", required: true, note: "For OTP"}
-    ],
-    steps: [
-      {title: "Login to myAadhaar", desc: "Login at myaadhaar.uidai.gov.in with OTP"},
-      {title: "Order PVC Card", desc: "Click 'Order Aadhaar PVC Card'"},
-      {title: "Verify OTP", desc: "Confirm with OTP"},
-      {title: "Pay ₹50", desc: "Pay online via UPI/card"},
-      {title: "Receive by Speed Post", desc: "Card delivered to registered address"}
-    ],
-    fees: [{component: "PVC Card + Postage", amount: "₹50", note: "All inclusive"}],
-    notes: []
-  },
-  {
-    id: 8, name: "Voter ID – New Registration (Form 6)",
-    category: "Certificates & Registrations",
-    description: "Register as a new voter and get your Voter ID / EPIC card",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "15–30 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "online",
-    portal: "Voter Service Portal", portalUrl: "https://voters.eci.gov.in",
-    tags: ["voter id", "epic", "form 6", "election", "registration"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Age Proof", required: true, note: "10th certificate, birth certificate, or Aadhaar"},
-      {name: "Address Proof", required: true, note: "Must be in the constituency"},
-      {name: "Passport Photo", required: true, note: "Recent colour photo"}
-    ],
-    steps: [
-      {title: "Register on Voter Portal", desc: "Create account at voters.eci.gov.in"},
-      {title: "Fill Form 6", desc: "Select 'Fresh Inclusion' and fill Form 6"},
-      {title: "Upload Documents", desc: "Upload age, address proof, and photo"},
-      {title: "Submit Application", desc: "Submit and note reference number"},
-      {title: "BLO Verification", desc: "Booth Level Officer verifies physically"},
-      {title: "Download e-EPIC", desc: "After approval, download e-EPIC"}
-    ],
-    fees: [{component: "Registration", amount: "Free", note: ""}],
-    notes: [
-      {type: "danger", text: "Must be 18+ as of 1st January of current year."}
-    ]
-  },
-  {
-    id: 9, name: "Voter ID – Correction (Form 8)",
-    category: "Certificates & Registrations",
-    description: "Correct name, address, photo on your Voter ID",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "15–30 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "online",
-    portal: "Voter Service Portal", portalUrl: "https://voters.eci.gov.in",
-    tags: ["voter id", "correction", "form 8", "epic"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Existing Voter ID / EPIC", required: true, note: "Current EPIC number"},
-      {name: "Proof for Correction", required: true, note: "Supporting document"}
-    ],
-    steps: [
-      {title: "Login to Voter Portal", desc: "Login at voters.eci.gov.in"},
-      {title: "Select Form 8", desc: "Choose 'Correction of entries'"},
-      {title: "Select Fields", desc: "Tick fields to update"},
-      {title: "Upload Proof", desc: "Upload supporting document"},
-      {title: "Submit and Track", desc: "Track with reference number"}
-    ],
-    fees: [{component: "Correction Fee", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 10, name: "e-EPIC Download",
-    category: "Certificates & Registrations",
-    description: "Download your Voter ID card as a PDF (e-EPIC)",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "Instant", timeCategory: "instant",
-    difficulty: "easy", mode: "online",
-    portal: "Voter Service Portal", portalUrl: "https://voters.eci.gov.in",
-    tags: ["voter id", "epic", "e-epic", "download"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "EPIC Number", required: true, note: "Your Voter ID EPIC number"},
-      {name: "Registered Mobile", required: true, note: "Mobile registered with portal"}
-    ],
-    steps: [
-      {title: "Login to Voter Portal", desc: "Go to voters.eci.gov.in"},
-      {title: "Download e-EPIC", desc: "Click on 'Download e-EPIC'"},
-      {title: "Enter EPIC Number", desc: "Enter your 10-digit EPIC"},
-      {title: "Verify OTP", desc: "OTP sent to registered mobile"},
-      {title: "Download PDF", desc: "Download your e-EPIC card"}
-    ],
-    fees: [{component: "Download", amount: "Free", note: ""}],
-    notes: [
-      {type: "success", text: "e-EPIC is legally valid as original Voter ID."}
-    ]
-  },
-  {
-    id: 11, name: "Passport – New Application",
-    category: "Travel Documents",
-    description: "Apply for a fresh Indian passport",
-    fee: 1500, feeType: "paid", feeDisplay: "₹1,500 onwards",
-    time: "30–45 days (Normal)", timeCategory: "7plus",
-    difficulty: "hard", mode: "online",
-    portal: "Passport Seva", portalUrl: "https://www.passportindia.gov.in",
-    tags: ["passport", "psk", "travel", "visa"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "For identity + address"},
-      {name: "Date of Birth Proof", required: true, note: "Birth or 10th marksheet"},
-      {name: "Address Proof", required: true, note: "Aadhaar / utility bill"},
-      {name: "2 Passport Photos", required: true, note: "White background, 3.5x3.5cm"}
-    ],
-    steps: [
-      {title: "Register on Passport Seva", desc: "Create account at passportindia.gov.in"},
-      {title: "Fill Fresh Passport Form", desc: "Choose 'Fresh Passport' and fill details"},
-      {title: "Upload Documents", desc: "Upload all required documents"},
-      {title: "Pay Fee Online", desc: "Normal 36pg: ₹1500 | Tatkal: ₹3500+"},
-      {title: "Book PSK Appointment", desc: "Book slot at nearest PSK"},
-      {title: "Visit PSK with Originals", desc: "Carry all original documents"},
-      {title: "Biometrics & Police Verification", desc: "Complete at PSK"},
-      {title: "Passport Delivered", desc: "Dispatched by Speed Post"}
-    ],
-    fees: [
-      {component: "Normal 36 Pages", amount: "₹1,500", note: "Standard"},
-      {component: "Normal 60 Pages", amount: "₹2,000", note: "Frequent travellers"},
-      {component: "Tatkal 36 Pages", amount: "₹3,500", note: "7–14 days"}
-    ],
-    notes: [
-      {type: "danger", text: "Name must EXACTLY match your Date of Birth proof."}
-    ]
-  },
-  {
-    id: 12, name: "Passport – Renewal / Re-issue",
-    category: "Travel Documents",
-    description: "Renew expired or expiring passport",
-    fee: 1500, feeType: "paid", feeDisplay: "₹1,500 onwards",
-    time: "30–45 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "online",
-    portal: "Passport Seva", portalUrl: "https://www.passportindia.gov.in",
-    tags: ["passport", "renewal", "reissue", "expired"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Old Passport", required: true, note: "Current/expired passport"},
-      {name: "Aadhaar Card", required: true, note: "For identity verification"},
-      {name: "Address Proof", required: false, note: "If address changed"}
-    ],
-    steps: [
-      {title: "Login to Passport Seva", desc: "Login at passportindia.gov.in"},
-      {title: "Select Renewal", desc: "Choose 'Re-issue (Renewal)' option"},
-      {title: "Upload Old Passport", desc: "Upload scanned copy"},
-      {title: "Pay Fee", desc: "Pay renewal fee online"},
-      {title: "Book Appointment", desc: "Book PSK appointment"}
-    ],
-    fees: [{component: "Renewal Fee", amount: "₹1,500", note: ""}],
-    notes: []
-  },
-  {
-    id: 13, name: "Driving License – New Application",
-    category: "Transport & Utilities",
-    description: "Apply for a new Driving License (DL) online",
-    fee: 300, feeType: "paid", feeDisplay: "₹300",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "online",
-    portal: "Sarathi (RTO)", portalUrl: "https://sarthi.parivahan.gov.in",
-    tags: ["driving license", "dl", "rto", "vehicle"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Age Proof", required: true, note: "18+ years, birth certificate or 10th"},
-      {name: "Address Proof", required: true, note: "Aadhaar or utility bill"},
-      {name: "Passport Photo", required: true, note: "4x6 cm, white background"}
-    ],
-    steps: [
-      {title: "Visit Sarathi Portal", desc: "Go to sarthi.parivahan.gov.in"},
-      {title: "Apply Online", desc: "Fill DL application form"},
-      {title: "Upload Documents", desc: "Upload age, address, photo"},
-      {title: "Pay ₹300", desc: "Complete payment online"},
-      {title: "Book Test Slot", desc: "Schedule written test at RTO"},
-      {title: "Take Written Test", desc: "Pass the vehicle knowledge test"},
-      {title: "Collect DL", desc: "DL sent by post"}
-    ],
-    fees: [{component: "Application Fee", amount: "₹300", note: "Includes test"}],
-    notes: []
-  },
-  {
-    id: 14, name: "Caste Certificate",
-    category: "Certificates & Registrations",
-    description: "Apply for Caste Certificate from District Administration",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "30–60 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "District Collector Office", portalUrl: "https://palghar.gov.in",
-    tags: ["caste", "certificate", "sc", "st", "obc"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Birth Certificate", required: true, note: "Original or certified copy"},
-      {name: "Aadhaar Card", required: true, note: "For identity"},
-      {name: "Address Proof", required: true, note: "Current residence proof"},
-      {name: "Affidavit", required: true, note: "Notarized affidavit on caste"}
-    ],
-    steps: [
-      {title: "Prepare Affidavit", desc: "Get notarized affidavit declaring caste"},
-      {title: "Collect Form", desc: "Get form from Taluka office"},
-      {title: "Attach Documents", desc: "Attach birth certificate, Aadhaar, affidavit"},
-      {title: "Submit at Taluka", desc: "Submit to Taluka office with all docs"},
-      {title: "Verification", desc: "Official verifies details"},
-      {title: "Receive Certificate", desc: "Collect from Taluka office"}
-    ],
-    fees: [{component: "Certificate Fee", amount: "Free", note: ""}],
-    notes: [
-      {type: "info", text: "For SC/ST/OBC candidates. Check eligibility before applying."}
-    ]
-  },
-  {
-    id: 15, name: "Scholarship – State / Central",
-    category: "Education & Welfare",
-    description: "Apply for government scholarships (merit/need-based)",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "30–90 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "online",
-    portal: "MAHADBT / e-DISTRICT", portalUrl: "https://mahadbtmahait.gov.in",
-    tags: ["scholarship", "student", "education", "merit", "grant"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Marksheet", required: true, note: "10th & 12th / college marksheets"},
-      {name: "Aadhaar Card", required: true, note: "Student's Aadhaar"},
-      {name: "Income Certificate", required: true, note: "For need-based scholarships"},
-      {name: "Bank Account Proof", required: true, note: "Passbook or statement"}
-    ],
-    steps: [
-      {title: "Check Eligibility", desc: "Visit MAHADBT website for scholarship list"},
-      {title: "Register on Portal", desc: "Create account on e-DISTRICT or MAHADBT"},
-      {title: "Fill Application", desc: "Fill all details and upload documents"},
-      {title: "Submit", desc: "Submit application before deadline"},
-      {title: "Verification", desc: "College/institution verifies details"},
-      {title: "Approval & Disbursal", desc: "Amount credited to bank account"}
-    ],
-    fees: [{component: "Application Fee", amount: "Free", note: ""}],
-    notes: [
-      {type: "info", text: "Application deadlines vary by scholarship. Check portal for dates."}
-    ]
-  },
-  {
-    id: 16, name: "Income Certificate",
-    category: "Certificates & Registrations",
-    description: "Apply for Income Certificate from Taluka office",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "e-DISTRICT", portalUrl: "https://edistrict.maharashtra.gov.in",
-    tags: ["income", "certificate", "taluka", "financial proof"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "Original + photocopy"},
-      {name: "Address Proof", required: true, note: "Current residence"},
-      {name: "Income Proof", required: false, note: "Salary slip or bank statement"}
-    ],
-    steps: [
-      {title: "Visit Taluka Office", desc: "Go to nearest Taluka (sub-district) office"},
-      {title: "Collect Form", desc: "Get Income Certificate form from counter"},
-      {title: "Fill & Attach Docs", desc: "Fill form and attach required documents"},
-      {title: "Submit", desc: "Submit form and collect token number"},
-      {title: "Verification", desc: "Official verifies income details"},
-      {title: "Collect Certificate", desc: "Collect signed certificate from office"}
-    ],
-    fees: [{component: "Certificate Fee", amount: "Free", note: "No charge"}],
-    notes: []
-  },
-  {
-    id: 17, name: "Domicile Certificate",
-    category: "Certificates & Registrations",
-    description: "Apply for Domicile/Residence Certificate",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "e-DISTRICT", portalUrl: "https://edistrict.maharashtra.gov.in",
-    tags: ["domicile", "residence", "taluka", "proof of residence"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "Original + photocopy"},
-      {name: "Address Proof", required: true, note: "Utility bill or rent agreement"}
-    ],
-    steps: [
-      {title: "Visit Taluka Office", desc: "Go to nearest Taluka office"},
-      {title: "Collect Form", desc: "Get Domicile Certificate form"},
-      {title: "Attach Documents", desc: "Attach Aadhaar and address proof"},
-      {title: "Submit", desc: "Submit with token slip"},
-      {title: "Collect Certificate", desc: "Collect signed certificate"}
-    ],
-    fees: [{component: "Certificate Fee", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 18, name: "Birth Certificate",
-    category: "Certificates & Registrations",
-    description: "Apply for Birth Certificate from Municipal Office",
-    fee: 50, feeType: "paid", feeDisplay: "₹50",
-    time: "5–7 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "Municipal Corporation", portalUrl: "https://vvc.org.in",
-    tags: ["birth", "certificate", "municipal", "vital records"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Hospital Discharge Summary", required: true, note: "From birth hospital"},
-      {name: "ID Proof", required: true, note: "Parent's Aadhaar or passport"}
-    ],
-    steps: [
-      {title: "Visit Municipal Office", desc: "Go to nearest Municipal Corporation office"},
-      {title: "Apply for Certificate", desc: "Submit birth details and documents"},
-      {title: "Pay ₹50", desc: "Pay application fee"},
-      {title: "Receive Certificate", desc: "Collect after 5–7 days"}
-    ],
-    fees: [{component: "Application Fee", amount: "₹50", note: "One-time"}],
-    notes: []
-  },
-  {
-    id: 19, name: "Marriage Certificate",
-    category: "Certificates & Registrations",
-    description: "Register marriage and get Marriage Certificate",
-    fee: 50, feeType: "paid", feeDisplay: "₹50",
-    time: "5–7 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "Municipal Corporation", portalUrl: "https://vvc.org.in",
-    tags: ["marriage", "registration", "certificate", "legal"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Marriage Invitation Card", required: true, note: "Original"},
-      {name: "Witness Affidavit", required: true, note: "From 2 witnesses"},
-      {name: "ID Proof", required: true, note: "Groom & Bride Aadhaar"}
-    ],
-    steps: [
-      {title: "Visit Municipal Office", desc: "Go to Marriage Registration counter"},
-      {title: "Fill Application Form", desc: "Fill marriage details"},
-      {title: "Attach Documents", desc: "Attach invitation & affidavits"},
-      {title: "Pay ₹50", desc: "Pay application fee"},
-      {title: "Receive Certificate", desc: "Collect after 5–7 days"}
-    ],
-    fees: [{component: "Registration Fee", amount: "₹50", note: ""}],
-    notes: []
-  },
-  {
-    id: 20, name: "Death Certificate",
-    category: "Certificates & Registrations",
-    description: "Register death and get Death Certificate",
-    fee: 50, feeType: "paid", feeDisplay: "₹50",
-    time: "5–7 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "Municipal Corporation", portalUrl: "https://vvc.org.in",
-    tags: ["death", "certificate", "vital records", "registration"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Hospital Death Certificate", required: true, note: "From hospital"},
-      {name: "Relative ID Proof", required: true, note: "Family member's Aadhaar"}
-    ],
-    steps: [
-      {title: "Visit Municipal Office", desc: "Go to Vital Records office"},
-      {title: "Submit Death Certificate", desc: "Submit hospital's death document"},
-      {title: "Fill Registration Form", desc: "Fill deceased person details"},
-      {title: "Pay ₹50", desc: "Pay registration fee"},
-      {title: "Receive Certificate", desc: "Collect death certificate"}
-    ],
-    fees: [{component: "Registration Fee", amount: "₹50", note: ""}],
-    notes: []
-  },
-  {
-    id: 21, name: "Property Tax Registration",
-    category: "Finance & Property",
-    description: "Register property and pay annual property tax",
-    fee: "Varies", feeType: "paid", feeDisplay: "₹500+",
-    time: "15–30 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "Municipal Corporation", portalUrl: "https://vvc.org.in",
-    tags: ["property", "tax", "registration", "house"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Property Document", required: true, note: "Registration or deed"},
-      {name: "Address Proof", required: true, note: "Utility bill"}
-    ],
-    steps: [
-      {title: "Collect Form", desc: "Get property tax form from Municipal office"},
-      {title: "Fill Details", desc: "Fill property description and value"},
-      {title: "Submit Documents", desc: "Submit with property deed"},
-      {title: "Pay Tax", desc: "Pay annual property tax"},
-      {title: "Receive Receipt", desc: "Collect tax receipt"}
-    ],
-    fees: [{component: "Property Tax", amount: "₹500+", note: "Based on property value"}],
-    notes: []
-  },
-  {
-    id: 22, name: "Trade License / Business Registration",
-    category: "Finance & Property",
-    description: "Register business and get Trade License",
-    fee: 500, feeType: "paid", feeDisplay: "₹500",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "Municipal Corporation", portalUrl: "https://vvc.org.in",
-    tags: ["business", "trade license", "registration", "shop"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Shop Photo", required: true, note: "Front view of shop"},
-      {name: "Owner ID", required: true, note: "Aadhaar or PAN"},
-      {name: "Rent Deed", required: true, note: "If rented property"}
-    ],
-    steps: [
-      {title: "Apply Online / Offline", desc: "Submit application at Municipal office"},
-      {title: "Attach Documents", desc: "Attach all required documents"},
-      {title: "Pay ₹500", desc: "Pay application fee"},
-      {title: "Verification", desc: "Officer verifies shop location"},
-      {title: "Receive License", desc: "Collect Trade License"}
-    ],
-    fees: [{component: "License Fee", amount: "₹500", note: "Annual"}],
-    notes: []
-  },
-  {
-    id: 23, name: "GST Registration",
-    category: "Finance & Property",
-    description: "Apply for Goods & Services Tax (GST) registration",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "3–7 days", timeCategory: "1to7",
-    difficulty: "hard", mode: "online",
-    portal: "GST Portal", portalUrl: "https://www.gst.gov.in",
-    tags: ["gst", "registration", "tax", "business"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "PAN Card", required: true, note: "Business PAN"},
-      {name: "Aadhaar Card", required: true, note: "Owner's Aadhaar"},
-      {name: "Address Proof", required: true, note: "Business address"}
-    ],
-    steps: [
-      {title: "Enroll on GST Portal", desc: "Go to gst.gov.in and enroll"},
-      {title: "Fill FORM GST REG-01", desc: "Fill registration form"},
-      {title: "Upload Documents", desc: "Upload PAN, Aadhaar, address proof"},
-      {title: "Submit", desc: "Submit application"},
-      {title: "Receive GSTIN", desc: "GSTIN sent to registered email"}
-    ],
-    fees: [{component: "Registration", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 24, name: "e-Shram Card Registration",
-    category: "Employment & Welfare",
-    description: "Register as unorganized worker and get e-Shram card",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "Instant", timeCategory: "instant",
-    difficulty: "easy", mode: "online",
-    portal: "e-Shram Portal", portalUrl: "https://eshram.gov.in",
-    tags: ["e-shram", "worker", "unorganized", "welfare"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "12-digit Aadhaar"},
-      {name: "Mobile Number", required: true, note: "Aadhaar-linked"}
-    ],
-    steps: [
-      {title: "Visit e-Shram Portal", desc: "Go to eshram.gov.in"},
-      {title: "Enter Aadhaar", desc: "Enter your 12-digit Aadhaar"},
-      {title: "Verify OTP", desc: "OTP sent to registered mobile"},
-      {title: "Fill Details", desc: "Fill occupation and address details"},
-      {title: "Confirm Registration", desc: "e-Shram number generated instantly"}
-    ],
-    fees: [{component: "Registration", amount: "Free", note: ""}],
-    notes: [
-      {type: "info", text: "For self-employed and unorganized workers."}
-    ]
-  },
-  {
-    id: 25, name: "PM Kisan eKYC Registration",
-    category: "Employment & Welfare",
-    description: "Register for PM Kisan Samman Nidhi scheme",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "Instant", timeCategory: "instant",
-    difficulty: "easy", mode: "online",
-    portal: "PM Kisan Portal", portalUrl: "https://pmkisan.gov.in",
-    tags: ["pm kisan", "farmer", "scheme", "subsidy"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "12-digit Aadhaar"},
-      {name: "Land Records", required: true, note: "Khasra/Khatauni"}
-    ],
-    steps: [
-      {title: "Visit PM Kisan Portal", desc: "Go to pmkisan.gov.in"},
-      {title: "Register as New Farmer", desc: "Click 'New Farmer Registration'"},
-      {title: "Enter Details", desc: "Fill name, Aadhaar, bank account"},
-      {title: "Verify OTP", desc: "OTP sent to registered mobile"},
-      {title: "Confirmation", desc: "Registration complete, installments start"}
-    ],
-    fees: [{component: "Registration", amount: "Free", note: ""}],
-    notes: [
-      {type: "info", text: "Farmers receive ₹6,000 per year in 3 installments."}
-    ]
-  },
-  {
-    id: 26, name: "EPFO / PF Account Opening",
-    category: "Employment & Welfare",
-    description: "Open Employee Provident Fund (EPF) account",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "5–7 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "online",
-    portal: "EPFO Portal", portalUrl: "https://www.epfindia.gov.in",
-    tags: ["epfo", "pf", "provident fund", "retirement"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "For KYC"},
-      {name: "Bank Account", required: true, note: "For fund transfer"},
-      {name: "Employment Letter", required: true, note: "From employer"}
-    ],
-    steps: [
-      {title: "Login to EPFO e-Services", desc: "Register on EPFO portal"},
-      {title: "Apply for Account", desc: "Fill member registration form"},
-      {title: "Link Aadhaar", desc: "Link Aadhaar to account"},
-      {title: "Get UAN", desc: "Unique Account Number issued"},
-      {title: "Employer Activation", desc: "Employer activates in company system"}
-    ],
-    fees: [{component: "Account Opening", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 27, name: "Ayushman Bharat Card (PMJAY)",
-    category: "Health & Welfare",
-    description: "Register for Ayushman Bharat health insurance scheme",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "7–30 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "Ayushman Bharat", portalUrl: "https://pmjay.gov.in",
-    tags: ["ayushman", "health insurance", "medical", "free treatment"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Aadhaar Card", required: true, note: "Family head's Aadhaar"},
-      {name: "Ration Card", required: false, note: "If available"}
-    ],
-    steps: [
-      {title: "Check Eligibility", desc: "Check on pmjay.gov.in or visit Seva Kendra"},
-      {title: "Collect Form", desc: "Get registration form from Seva Kendra"},
-      {title: "Submit Documents", desc: "Submit Aadhaar and proof"},
-      {title: "Enrollment", desc: "Operator processes enrollment"},
-      {title: "Receive Card", desc: "Ayushman card issued immediately"}
-    ],
-    fees: [{component: "Registration", amount: "Free", note: "₹5 lakh coverage per year"}],
-    notes: [
-      {type: "info", text: "Covers ₹5 lakh per family per year at empanelled hospitals."}
-    ]
-  },
-  {
-    id: 28, name: "Senior Citizen Card",
-    category: "Health & Welfare",
-    description: "Register as senior citizen and get concession card",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "5–7 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "Social Welfare Department", portalUrl: "https://swd.maharashtra.gov.in",
-    tags: ["senior citizen", "pensioner", "age 60", "concession"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Age Proof", required: true, note: "Birth certificate or Aadhaar"},
-      {name: "Address Proof", required: true, note: "Residential proof"}
-    ],
-    steps: [
-      {title: "Visit Taluka Office", desc: "Go to Taluka or Social Welfare office"},
-      {title: "Fill Application", desc: "Fill senior citizen registration form"},
-      {title: "Submit Documents", desc: "Attach age and address proof"},
-      {title: "Receive Card", desc: "Card issued after verification"}
-    ],
-    fees: [{component: "Card Fee", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 29, name: "Disability Certificate",
-    category: "Health & Welfare",
-    description: "Apply for Disability Certificate from medical board",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "30–60 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "District Disability Board", portalUrl: "https://swd.maharashtra.gov.in",
-    tags: ["disability", "certificate", "handicap", "benefits"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Medical Report", required: true, note: "From registered doctor"},
-      {name: "Aadhaar Card", required: true, note: "For identity"},
-      {name: "Birth Certificate", required: true, note: "Age proof"}
-    ],
-    steps: [
-      {title: "Get Medical Report", desc: "Get certified report from registered doctor"},
-      {title: "Collect Form", desc: "Get application from District office"},
-      {title: "Submit at District Office", desc: "Submit form with medical report"},
-      {title: "Medical Board Evaluation", desc: "Board examines applicant"},
-      {title: "Receive Certificate", desc: "Disability certificate issued"}
-    ],
-    fees: [{component: "Certificate", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 30, name: "Electricity Connection – New",
-    category: "Transport & Utilities",
-    description: "Apply for new electricity connection",
-    fee: 500, feeType: "paid", feeDisplay: "₹500+",
-    time: "15–30 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "MAHADISCOM", portalUrl: "https://www.mahadiscom.in",
-    tags: ["electricity", "power", "connection", "bill"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Address Proof", required: true, note: "Rent agreement or property doc"},
-      {name: "ID Proof", required: true, note: "Aadhaar or PAN"},
-      {name: "Property Map", required: true, note: "From municipal office"}
-    ],
-    steps: [
-      {title: "Visit DISCOM Office", desc: "Go to nearest electricity office"},
-      {title: "Apply for Connection", desc: "Submit application form"},
-      {title: "Attach Documents", desc: "Attach proof documents"},
-      {title: "Site Inspection", desc: "Official inspects property"},
-      {title: "Pay Connection Fee", desc: "Pay and get connection reference"},
-      {title: "Meter Installation", desc: "Meter installed and connection activated"}
-    ],
-    fees: [{component: "Connection Fee", amount: "₹500+", note: "Based on load"}],
-    notes: []
-  },
-  {
-    id: 31, name: "Water Connection – New",
-    category: "Transport & Utilities",
-    description: "Apply for new water supply connection",
-    fee: 500, feeType: "paid", feeDisplay: "₹500+",
-    time: "15–30 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "Municipal Water Supply", portalUrl: "https://vvc.org.in",
-    tags: ["water", "connection", "supply", "bill"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Address Proof", required: true, note: "Property document"},
-      {name: "ID Proof", required: true, note: "Aadhaar"},
-      {name: "Property Tax Receipt", required: true, note: "From municipal office"}
-    ],
-    steps: [
-      {title: "Visit Municipal Office", desc: "Go to water supply counter"},
-      {title: "Collect Form", desc: "Get water connection application form"},
-      {title: "Submit with Documents", desc: "Submit form with proof documents"},
-      {title: "Pay Fee", desc: "Pay ₹500+ connection fee"},
-      {title: "Site Inspection", desc: "Official verifies property"},
-      {title: "Connection Activated", desc: "Water meter installed and activated"}
-    ],
-    fees: [{component: "Connection Fee", amount: "₹500+", note: ""}],
-    notes: []
-  },
-  {
-    id: 32, name: "Gas Connection – New",
-    category: "Transport & Utilities",
-    description: "Apply for new cooking gas (LPG) connection",
-    fee: 500, feeType: "paid", feeDisplay: "₹500",
-    time: "7–15 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "online",
-    portal: "IndianOil / Bharat Gas", portalUrl: "https://www.iocl.com",
-    tags: ["gas", "lpg", "cooking", "connection"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Address Proof", required: true, note: "Utility bill or Aadhaar"},
-      {name: "ID Proof", required: true, note: "Aadhaar or voter ID"},
-      {name: "Income Proof", required: false, note: "For BPL customers"}
-    ],
-    steps: [
-      {title: "Visit Gas Agency", desc: "Go to local gas distribution agency"},
-      {title: "Apply Online/Offline", desc: "Submit application form"},
-      {title: "Attach Documents", desc: "Attach address and ID proof"},
-      {title: "Pay ₹500", desc: "Pay connection fee"},
-      {title: "Receive Connection", desc: "Get gas connection and stove"}
-    ],
-    fees: [{component: "Connection Fee", amount: "₹500", note: "One-time"}],
-    notes: []
-  },
-  {
-    id: 33, name: "Ration Card – New / Correction",
-    category: "Food & Rations",
-    description: "Apply for new ration card or correct existing details",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "30–60 days", timeCategory: "7plus",
-    difficulty: "medium", mode: "offline",
-    portal: "Food & Civil Supplies", portalUrl: "https://fcs.maharashtra.gov.in",
-    tags: ["ration", "card", "ration shop", "food", "pds"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "Address Proof", required: true, note: "Electricity bill or rent deed"},
-      {name: "ID Proof", required: true, note: "Aadhaar or voter ID"},
-      {name: "Ration Proof", required: true, note: "If correction"}
-    ],
-    steps: [
-      {title: "Visit Food & Supply Office", desc: "Go to Taluka Food & Supply office"},
-      {title: "Collect Form", desc: "Get ration card application form"},
-      {title: "Fill & Submit", desc: "Fill and submit with documents"},
-      {title: "Verification", desc: "Official verifies address"},
-      {title: "Receive Card", desc: "Ration card issued after approval"}
-    ],
-    fees: [{component: "Card Fee", amount: "Free", note: ""}],
-    notes: []
-  },
-  {
-    id: 34, name: "Police Verification / Character Certificate",
-    category: "Certificates & Registrations",
-    description: "Get police verification or character certificate",
-    fee: 0, feeType: "free", feeDisplay: "Free",
-    time: "15–30 days", timeCategory: "7plus",
-    difficulty: "easy", mode: "offline",
-    portal: "Police Station", portalUrl: "https://police.maharashtra.gov.in",
-    tags: ["police", "verification", "character", "certificate"],
-    lastVerified: "April 2025",
-    documents: [
-      {name: "ID Proof", required: true, note: "Aadhaar or voter ID"},
-      {name: "Address Proof", required: true, note: "Current residence proof"},
-      {name: "Application Form", required: true, note: "From police station"}
-    ],
-    steps: [
-      {title: "Visit Police Station", desc: "Go to nearest police station"},
-      {title: "Collect Form", desc: "Get verification form from counter"},
-      {title: "Fill & Submit", desc: "Fill form and attach documents"},
-      {title: "Police Enquiry", desc: "Police verifies background"},
-      {title: "Receive Certificate", desc: "Character certificate issued"}
-    ],
-    fees: [{component: "Certificate", amount: "Free", note: ""}],
-    notes: []
+  // ═══════════════════════════════════════════════════════════════ SERVICE DATA (UPGRADE 12)
+  const services = [
+    { id: 1, name: "PAN Card New", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "id_card", description: "Apply for new Permanent Account Number (PAN)", portal: "NSDL", portalColor: "#003366", portalUrl: "https://www.nsdl.co.in", difficulty: "easy", time: "5–7 days", mode: "online", eligibility: "Any Indian resident with Aadhaar", fee: { govtFee: 107, serviceCharge: 30, gstAmount: 5, total: 142, govtPayTo: "Income Tax Department", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [{ type: "info", text: "eKYC via Aadhaar OTP takes only 10 mins" }, { type: "warning", text: "Photo must be recent (not older than 6 months)" }] },
+    { id: 2, name: "PAN Card Correction", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "edit", description: "Correct details in existing PAN", portal: "NSDL", portalColor: "#003366", portalUrl: "https://www.nsdl.co.in", difficulty: "easy", time: "5–7 days", mode: "online", fee: { govtFee: 107, serviceCharge: 30, gstAmount: 5, total: 142, govtPayTo: "Income Tax Department", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 3, name: "PAN-Aadhaar Link", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "link", description: "Link your PAN with Aadhaar (Mandatory)", portal: "NSDL", portalColor: "#003366", portalUrl: "https://www.nsdl.co.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 1000, serviceCharge: 50, gstAmount: 9, total: 1059, govtPayTo: "Income Tax Department", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 4, name: "Aadhaar Address Update", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "location_on", description: "Update address in Aadhaar", portal: "UIDAI", portalColor: "#FF6600", portalUrl: "https://resident.uidai.gov.in", difficulty: "easy", time: "Same day", mode: "online", fee: { govtFee: 50, serviceCharge: 25, gstAmount: 5, total: 80, govtPayTo: "UIDAI", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 5, name: "Aadhaar Mobile Update", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "phone", description: "Update phone number in Aadhaar", portal: "UIDAI", portalColor: "#FF6600", portalUrl: "https://resident.uidai.gov.in", difficulty: "easy", time: "Same day", mode: "online", fee: { govtFee: 50, serviceCharge: 30, gstAmount: 5, total: 85, govtPayTo: "UIDAI", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 6, name: "e-Aadhaar Download", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "download", description: "Download digital Aadhaar certificate", portal: "UIDAI", portalColor: "#FF6600", portalUrl: "https://resident.uidai.gov.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 10, gstAmount: 2, total: 12, govtPayTo: "UIDAI", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 7, name: "Aadhaar PVC Card", category: "Identity", categoryColor: "#1565C0", categoryBg: "#E3F2FD", icon: "card_membership", description: "Get physical PVC Aadhaar card", portal: "UIDAI", portalColor: "#FF6600", portalUrl: "https://resident.uidai.gov.in", difficulty: "easy", time: "5–10 days", mode: "online", fee: { govtFee: 50, serviceCharge: 25, gstAmount: 5, total: 80, govtPayTo: "UIDAI", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 8, name: "Voter ID New", category: "Identity", categoryColor: "#FF7722", categoryBg: "#FFEBEE", icon: "how_to_vote", description: "Register for new Voter ID (EPIC)", portal: "ECI", portalColor: "#FF7722", portalUrl: "https://www.eci.gov.in", difficulty: "easy", time: "7–15 days", mode: "online", fee: { govtFee: 0, serviceCharge: 40, gstAmount: 7, total: 47, govtPayTo: "Election Commission of India", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 9, name: "Voter ID Correction", category: "Identity", categoryColor: "#FF7722", categoryBg: "#FFEBEE", icon: "edit", description: "Correct details in Voter ID", portal: "ECI", portalColor: "#FF7722", portalUrl: "https://www.eci.gov.in", difficulty: "easy", time: "7–10 days", mode: "online", fee: { govtFee: 0, serviceCharge: 30, gstAmount: 5, total: 35, govtPayTo: "Election Commission of India", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 10, name: "e-EPIC Download", category: "Identity", categoryColor: "#FF7722", categoryBg: "#FFEBEE", icon: "download", description: "Download digital voter ID copy", portal: "ECI", portalColor: "#FF7722", portalUrl: "https://www.eci.gov.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 10, gstAmount: 2, total: 12, govtPayTo: "Election Commission of India", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 11, name: "Passport New", category: "Certificates", categoryColor: "#2E7D32", categoryBg: "#E8F5E9", icon: "flight_ticket", description: "Apply for new Indian passport", portal: "Passport", portalColor: "#8B0000", portalUrl: "https://passportindia.gov.in", difficulty: "hard", time: "15–30 days", mode: "offline", fee: { govtFee: 1500, serviceCharge: 100, gstAmount: 18, total: 1618, govtPayTo: "Ministry of External Affairs", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 12, name: "Passport Renewal", category: "Certificates", categoryColor: "#2E7D32", categoryBg: "#E8F5E9", icon: "refresh", description: "Renew expiring/expired passport", portal: "Passport", portalColor: "#8B0000", portalUrl: "https://passportindia.gov.in", difficulty: "medium", time: "10–15 days", mode: "offline", fee: { govtFee: 1500, serviceCharge: 100, gstAmount: 18, total: 1618, govtPayTo: "Ministry of External Affairs", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 13, name: "Ayushman Card", category: "Central Schemes", categoryColor: "#E65C00", categoryBg: "#FFF3E0", icon: "health_and_safety", description: "PM-JAY Ayushman Card for health", portal: "PMJAY", portalColor: "#FF6600", portalUrl: "https://www.pmjay.gov.in", difficulty: "easy", time: "3–5 days", mode: "online", fee: { govtFee: 0, serviceCharge: 50, gstAmount: 9, total: 59, govtPayTo: "Ministry of Labour", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 14, name: "PM Kisan eKYC", category: "Central Schemes", categoryColor: "#E65C00", categoryBg: "#FFF3E0", icon: "agriculture", description: "eKYC for PM Kisan monthly installments", portal: "PM Kisan", portalColor: "#2E7D32", portalUrl: "https://pmkisan.gov.in", difficulty: "easy", time: "1 day", mode: "online", fee: { govtFee: 0, serviceCharge: 20, gstAmount: 4, total: 24, govtPayTo: "Department of Agriculture", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 15, name: "e-Shram Card", category: "Central Schemes", categoryColor: "#E65C00", categoryBg: "#FFF3E0", icon: "work", description: "Register as unorganized sector worker", portal: "e-Shram", portalColor: "#FF6600", portalUrl: "https://eshram.gov.in", difficulty: "easy", time: "Same day", mode: "online", fee: { govtFee: 0, serviceCharge: 30, gstAmount: 5, total: 35, govtPayTo: "Ministry of Labour", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 16, name: "MAHADBT Scholarship", category: "Education", categoryColor: "#6A1B9A", categoryBg: "#F3E5F5", icon: "school", description: "Post-matric scholarship for OBC/SBC/NT", portal: "AapleSarkar", portalColor: "#FF6600", portalUrl: "https://aaplesarkar.maharashtra.gov.in", difficulty: "medium", time: "30–45 days", mode: "online", fee: { govtFee: 0, serviceCharge: 50, gstAmount: 9, total: 59, govtPayTo: "Department of Education", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [{ type: "warning", text: "Opens annually — check current year deadline" }] },
+    { id: 17, name: "DigiLocker Setup", category: "Finance", categoryColor: "#00695C", categoryBg: "#E0F2F1", icon: "lock", description: "Digital document locker for all certificates", portal: "DigiLocker", portalColor: "#1976D2", portalUrl: "https://digilocker.gov.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 20, gstAmount: 4, total: 24, govtPayTo: "Department of IT", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 18, name: "NSP Scholarship", category: "Education", categoryColor: "#6A1B9A", categoryBg: "#F3E5F5", icon: "school", description: "National Scholarship Programme", portal: "NSP", portalColor: "#FF6600", portalUrl: "https://scholarships.gov.in", difficulty: "hard", time: "45–60 days", mode: "online", fee: { govtFee: 0, serviceCharge: 40, gstAmount: 7, total: 47, govtPayTo: "Ministry of Education", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 19, name: "EPFO PF Withdrawal", category: "Finance", categoryColor: "#00695C", categoryBg: "#E0F2F1", icon: "savings", description: "Withdraw Provident Fund or settlement", portal: "EPFO", portalColor: "#003366", portalUrl: "https://www.epfindia.gov.in", difficulty: "medium", time: "10–15 days", mode: "online", fee: { govtFee: 0, serviceCharge: 50, gstAmount: 9, total: 59, govtPayTo: "EPFO", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 20, name: "EPFO Passbook", category: "Finance", categoryColor: "#00695C", categoryBg: "#E0F2F1", icon: "account_balance", description: "Download EPFO passbook/statement", portal: "EPFO", portalColor: "#003366", portalUrl: "https://www.epfindia.gov.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 10, gstAmount: 2, total: 12, govtPayTo: "EPFO", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 21, name: "Learner's License", category: "Transport", categoryColor: "#C62828", categoryBg: "#FFEBEE", icon: "two_wheeler", description: "Apply for learner's driving license", portal: "Sarathi", portalColor: "#2E7D32", portalUrl: "https://sarathi.parivahan.gov.in", difficulty: "easy", time: "5–7 days", mode: "hybrid", fee: { govtFee: 200, serviceCharge: 50, gstAmount: 9, total: 259, govtPayTo: "Road Transport Authority", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 22, name: "Driving License New", category: "Transport", categoryColor: "#C62828", categoryBg: "#FFEBEE", icon: "directions_car", description: "Apply for permanent driving license", portal: "Sarathi", portalColor: "#2E7D32", portalUrl: "https://sarathi.parivahan.gov.in", difficulty: "medium", time: "15–21 days", mode: "hybrid", fee: { govtFee: 400, serviceCharge: 80, gstAmount: 14, total: 494, govtPayTo: "Road Transport Authority", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 23, name: "Traffic Challan Pay", category: "Transport", categoryColor: "#C62828", categoryBg: "#FFEBEE", icon: "traffic", description: "Pay online traffic violation fines", portal: "eChallan", portalColor: "#FF6600", portalUrl: "https://echallan.nhai.gov.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 20, gstAmount: 4, total: 24, govtPayTo: "Traffic Authority", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 24, name: "IRCTC Booking", category: "Utilities", categoryColor: "#F57F17", categoryBg: "#FFFDE7", icon: "train", description: "Assist with train ticket booking", portal: "IRCTC", portalColor: "#234F8F", portalUrl: "https://www.irctc.co.in", difficulty: "easy", time: "Same day", mode: "online", fee: { govtFee: 0, serviceCharge: 30, gstAmount: 5, total: 35, govtPayTo: "IRCTC", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 25, name: "Electricity Bill Pay", category: "Utilities", categoryColor: "#F57F17", categoryBg: "#FFFDE7", icon: "flash_on", description: "Pay MSEDCL electricity bills", portal: "MSEDCL", portalColor: "#FF6600", portalUrl: "https://www.msedcl.org", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 10, gstAmount: 2, total: 12, govtPayTo: "MSEDCL", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 26, name: "VVCMC Property Tax", category: "Utilities", categoryColor: "#F57F17", categoryBg: "#FFFDE7", icon: "domain", description: "Pay Virar VMC property taxes", portal: "VVCMC", portalColor: "#FF6600", portalUrl: "https://vvc.gov.in", difficulty: "easy", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 20, gstAmount: 4, total: 24, govtPayTo: "Virar VMC", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 27, name: "Resume Creation", category: "Employment", categoryColor: "#283593", categoryBg: "#E8EAF6", icon: "description", description: "Professional resume writing service", portal: "Seva Kendra", portalColor: "#003580", portalUrl: "#", difficulty: "easy", time: "1–2 days", mode: "offline", fee: { govtFee: 0, serviceCharge: 50, gstAmount: 9, total: 59, govtPayTo: "Seva Kendra", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 28, name: "Govt Job Form", category: "Employment", categoryColor: "#283593", categoryBg: "#E8EAF6", icon: "work", description: "Fill and submit government job application forms", portal: "UPSC/SSC", portalColor: "#003580", portalUrl: "https://www.upsc.gov.in", difficulty: "medium", time: "Same day", mode: "online", fee: { govtFee: 250, serviceCharge: 50, gstAmount: 9, total: 309, govtPayTo: "Recruitment Board", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 29, name: "Caste Certificate", category: "Certificates", categoryColor: "#2E7D32", categoryBg: "#E8F5E9", icon: "badge", description: "Apply for caste/community certificate", portal: "AapleSarkar", portalColor: "#FF6600", portalUrl: "https://aaplesarkar.maharashtra.gov.in", difficulty: "medium", time: "10–15 days", mode: "offline", fee: { govtFee: 30, serviceCharge: 40, gstAmount: 7, total: 77, govtPayTo: "Collector Office", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 30, name: "Income Certificate", category: "Certificates", categoryColor: "#2E7D32", categoryBg: "#E8F5E9", icon: "receipt", description: "Income certificate for loans, scholarships", portal: "AapleSarkar", portalColor: "#FF6600", portalUrl: "https://aaplesarkar.maharashtra.gov.in", difficulty: "easy", time: "7–10 days", mode: "offline", fee: { govtFee: 30, serviceCharge: 30, gstAmount: 5, total: 65, govtPayTo: "Talathi Office", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 31, name: "Domicile Certificate", category: "Certificates", categoryColor: "#2E7D32", categoryBg: "#E8F5E9", icon: "home", description: "Domicile/Residency certificate", portal: "AapleSarkar", portalColor: "#FF6600", portalUrl: "https://aaplesarkar.maharashtra.gov.in", difficulty: "easy", time: "7–10 days", mode: "offline", fee: { govtFee: 30, serviceCharge: 40, gstAmount: 7, total: 77, govtPayTo: "Talathi Office", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 32, name: "7/12 Extract", category: "Land Records", categoryColor: "#006064", categoryBg: "#E0F7FA", icon: "map", description: "Land 7/12 extract (field sketch + ownership)", portal: "AapleSarkar", portalColor: "#FF6600", portalUrl: "https://aaplesarkar.maharashtra.gov.in", difficulty: "easy", time: "1–2 days", mode: "offline", fee: { govtFee: 0, serviceCharge: 20, gstAmount: 4, total: 24, govtPayTo: "Revenue Department", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 33, name: "Udyam Registration", category: "Finance", categoryColor: "#00695C", categoryBg: "#E0F2F1", icon: "business", description: "MSME Udyam registration for small business", portal: "Udyam", portalColor: "#FF6600", portalUrl: "https://udyamregistration.gov.in", difficulty: "medium", time: "Instant", mode: "online", fee: { govtFee: 0, serviceCharge: 50, gstAmount: 9, total: 59, govtPayTo: "Ministry of MSME", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] },
+    { id: 34, name: "Online Grievance", category: "Utilities", categoryColor: "#F57F17", categoryBg: "#FFFDE7", icon: "feedback", description: "File CPGRAMS complaint online", portal: "CPGRAMS", portalColor: "#003580", portalUrl: "https://pgportal.gov.in", difficulty: "easy", time: "Same day", mode: "online", fee: { govtFee: 0, serviceCharge: 30, gstAmount: 5, total: 35, govtPayTo: "Department", paymentModes: ["UPI", "Net Banking", "Card", "Cash"] }, documents: [], steps: [], notes: [] }
+  ];
+
+  const categories = [
+    { id: 1, name: "Identity", icon: "id_card", color: "#1565C0", bg: "#E3F2FD", count: 7 },
+    { id: 2, name: "Certificates", icon: "badge", color: "#2E7D32", bg: "#E8F5E9", count: 6 },
+    { id: 3, name: "Central Schemes", icon: "gavel", color: "#E65C00", bg: "#FFF3E0", count: 4 },
+    { id: 4, name: "Education", icon: "school", color: "#6A1B9A", bg: "#F3E5F5", count: 2 },
+    { id: 5, name: "Finance", icon: "account_balance", color: "#00695C", bg: "#E0F2F1", count: 5 },
+    { id: 6, name: "Utilities", icon: "flash_on", color: "#F57F17", bg: "#FFFDE7", count: 4 },
+    { id: 7, name: "Transport", icon: "directions_car", color: "#C62828", bg: "#FFEBEE", count: 3 },
+    { id: 8, name: "Employment", icon: "work", color: "#283593", bg: "#E8EAF6", count: 2 },
+    { id: 9, name: "Land Records", icon: "map", color: "#006064", bg: "#E0F7FA", count: 1 }
+  ];
+
+  // ═══════════════════════════════════════════════════════════════ APP LOGIC
+  let filteredServices = [...services];
+  let fuse = null;
+  let currentDetailService = null;
+  let savedServices = JSON.parse(localStorage.getItem('savedServices') || '[]');
+
+  function initSearch() {
+    fuse = new Fuse(services, {
+      keys: [
+        { name: 'name', weight: 0.5 },
+        { name: 'category', weight: 0.3 },
+        { name: 'description', weight: 0.15 },
+        { name: 'portal', weight: 0.05 }
+      ],
+      threshold: 0.35,
+      includeScore: true,
+      minMatchCharLength: 2,
+      ignoreLocation: true,
+      findAllMatches: true
+    });
   }
-];
 
-// ========== CATEGORIES ========== 
-const categories = [
-  {id: 'identity', name: 'Identity Documents', icon: 'badge'},
-  {id: 'certificates', name: 'Certificates', icon: 'description'},
-  {id: 'travel', name: 'Travel Documents', icon: 'flight'},
-  {id: 'transport', name: 'Transport', icon: 'directions_car'},
-  {id: 'finance', name: 'Finance', icon: 'currency_rupee'},
-  {id: 'health', name: 'Health & Welfare', icon: 'local_hospital'},
-  {id: 'education', name: 'Education', icon: 'school'},
-  {id: 'employment', name: 'Employment', icon: 'work'},
-  {id: 'utilities', name: 'Utilities', icon: 'bolt'},
-  {id: 'food', name: 'Food & Rations', icon: 'restaurant'},
-  {id: 'other', name: 'Other Services', icon: 'more_horiz'}
-];
-
-// ========== TRANSLATIONS ========== 
-const translations = {
-  en: {
-    searchPlaceholder: "Search PAN, Aadhaar, Passport...",
-    quickAccess: "Quick Access:",
-    browseCategories: "Browse by Category",
-    allServices: "All Services",
-    filterServices: "Filter Services",
-    documentsRequired: "Documents Required",
-    processingTime: "Processing Time",
-    fee: "Fee", feeTotal: "Total Payable",
-    govtFee: "Government Fee", serviceFee: "Service Fee",
-    steps: "Steps", notes: "Important Notes",
-    overview: "Overview", preview: "Preview",
-    free: "Free", paidFee: "Paid",
-    offlineOnly: "Offline Only", onlineService: "Online Service",
-    openPortal: "Open Official Portal",
-    bookmark: "Save Service", share: "Share",
-    print: "Print Guide", copyLink: "Copy Link",
-    viewDetails: "View Details",
-    difficulty: {easy:"Easy", medium:"Medium", hard:"Hard"},
-    disclaimer: "Service charges include Seva Kendra assistance fee. Government fees paid directly.",
-    portalNote: "This is a citizen assistance portal, not an official government website.",
-    footerTagline: "Jai Hind • Digital India"
-  },
-  mr: {
-    searchPlaceholder: "शोधा — पॅन, आधार, पासपोर्ट...",
-    quickAccess: "जलद प्रवेश:",
-    browseCategories: "श्रेणीनुसार शोधा",
-    allServices: "सर्व सेवा",
-    filterServices: "सेवा फिल्टर करा",
-    documentsRequired: "आवश्यक कागदपत्रे",
-    processingTime: "प्रक्रिया वेळ",
-    fee: "शुल्क", feeTotal: "एकूण देय",
-    govtFee: "सरकारी शुल्क", serviceFee: "सेवा शुल्क",
-    steps: "पायऱ्या", notes: "महत्त्वाच्या नोट्स",
-    overview: "आढावा", preview: "पूर्वावलोकन",
-    free: "मोफत", paidFee: "सशुल्क",
-    offlineOnly: "केवळ ऑफलाइन", onlineService: "ऑनलाइन सेवा",
-    openPortal: "अधिकृत पोर्टल उघडा",
-    bookmark: "सेवा जतन करा", share: "शेअर करा",
-    print: "मुद्रण करा", copyLink: "लिंक कॉपी करा",
-    viewDetails: "तपशील पहा",
-    difficulty: {easy:"सोपे", medium:"मध्यम", hard:"कठीण"},
-    disclaimer: "सेवा शुल्कात सेवा केंद्र सहाय्य शुल्काचा समावेश आहे.",
-    portalNote: "हे नागरिक सहाय्य केंद्र आहे, अधिकृत सरकारी संकेतस्थळ नाही.",
-    footerTagline: "जय हिंद • जय महाराष्ट्र"
-  },
-  hi: {
-    searchPlaceholder: "खोजें — पैन, आधार, पासपोर्ट...",
-    quickAccess: "त्वरित पहुँच:",
-    browseCategories: "श्रेणी के अनुसार खोजें",
-    allServices: "सभी सेवाएं",
-    filterServices: "सेवाएं फ़िल्टर करें",
-    documentsRequired: "आवश्यक दस्तावेज़",
-    processingTime: "प्रसंस्करण समय",
-    fee: "शुल्क", feeTotal: "कुल देय",
-    govtFee: "सरकारी शुल्क", serviceFee: "सेवा शुल्क",
-    steps: "चरण", notes: "महत्वपूर्ण नोट्स",
-    overview: "अवलोकन", preview: "पूर्वावलोकन",
-    free: "मुफ़्त", paidFee: "सशुल्क",
-    offlineOnly: "केवल ऑफ़लाइन", onlineService: "ऑनलाइन सेवा",
-    openPortal: "आधिकारिक पोर्टल खोलें",
-    bookmark: "सेवा सहेजें", share: "साझा करें",
-    print: "प्रिंट करें", copyLink: "लिंक कॉपी करें",
-    viewDetails: "विवरण देखें",
-    difficulty: {easy:"आसान", medium:"मध्यम", hard:"कठिन"},
-    disclaimer: "सेवा शुल्क में सेवा केंद्र सहायता शुल्क शामिल है।",
-    portalNote: "यह एक नागरिक सहायता केंद्र है, आधिकारिक सरकारी वेबसाइट नहीं।",
-    footerTagline: "जय हिंद • डिजिटल भारत"
+  function updateClock() {
+    const now = new Date();
+    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
+    document.getElementById('liveTime').textContent = now.toLocaleString('en-IN', options) + ' IST';
   }
-};
+  updateClock();
+  setInterval(updateClock, 1000);
 
-let currentLanguage = localStorage.getItem('seva_lang') || 'en';
-let currentTheme = localStorage.getItem('seva_theme') || 'light';
+  function renderCategoryGrid() {
+    const grid = document.getElementById('categoryGrid');
+    grid.innerHTML = categories.map(cat => `
+      <div class="category-card reveal">
+        <div class="category-icon-circle" style="background: ${cat.bg}; color: ${cat.color};">
+          <span class="material-icons-round">${cat.icon}</span>
+        </div>
+        <div class="category-name">${cat.name}</div>
+        <div class="category-count">${cat.count} services</div>
+      </div>
+    `).join('');
 
-// ========== INITIALIZE THEME ========== 
-function initTheme() {
-  if(currentTheme === 'dark' || (currentTheme === 'auto' && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    document.getElementById('themeToggle').textContent = '🌙';
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    document.getElementById('themeToggle').textContent = '☀️';
+    document.querySelectorAll('.category-card').forEach((card, idx) => {
+      card.addEventListener('click', () => {
+        const categoryName = categories[idx].name;
+        filteredServices = services.filter(s => s.category === categoryName);
+        renderServiceGrid();
+        document.querySelector('.container-main').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
   }
-}
 
-// ========== RENDER SERVICES GRID ========== 
-function renderServices(filterCategory = null) {
-  const grid = document.getElementById('serviceGrid');
-  grid.innerHTML = '';
-  
-  const filtered = filterCategory ? services.filter(s => s.category.toLowerCase().includes(filterCategory)) : services;
-  
-  filtered.forEach((service, idx) => {
-    const card = document.createElement('div');
-    card.className = 'service-card reveal';
-    card.style.animationDelay = `${idx * 30}ms`;
-    
-    const isSaved = localStorage.getItem(`bookmark_${service.id}`) === '1';
-    const feeClass = service.feeType === 'free' ? 'free' : 'paid';
-    
-    card.innerHTML = `
-      <div class="service-card-header">
-        <h3 class="service-card-title">${service.name}</h3>
-        <button class="bookmark-btn ${isSaved ? 'saved' : ''}" data-service-id="${service.id}" title="Save service">
-          ${isSaved ? '★' : '☆'}
+  function renderServiceGrid() {
+    const grid = document.getElementById('serviceGrid');
+    document.getElementById('serviceCounter').textContent = `Showing ${filteredServices.length} services`;
+    grid.innerHTML = filteredServices.map(service => `
+      <div class="service-card reveal">
+        <div class="service-top-band"></div>
+        <div class="service-header">
+          <span class="service-category-badge">${service.category}</span>
+          <button class="bookmark-btn ${savedServices.includes(service.id) ? 'saved' : ''}" data-id="${service.id}">
+            ${savedServices.includes(service.id) ? '★' : '☆'}
+          </button>
+        </div>
+        <div style="padding: 0 14px;">
+          <div class="service-portal-badge" style="background: ${service.portalColor};">${service.portal}</div>
+        </div>
+        <div class="service-body">
+          <div class="service-name">${service.name}</div>
+          <div class="service-description">${service.description}</div>
+        </div>
+        <div class="service-divider"></div>
+        <div class="service-footer">
+          <span class="fee-chip ${service.fee.total === 0 ? 'fee-free' : 'fee-paid'}">
+            ${service.fee.total === 0 ? '✓ Free' : '₹' + service.fee.total}
+          </span>
+          <span class="time-chip">⏱ ${service.time}</span>
+          <span style="display: flex; align-items: center; font-size: 11px; gap: 4px;">
+            <span class="difficulty-dot difficulty-${service.difficulty}"></span>
+            ${service.difficulty.charAt(0).toUpperCase() + service.difficulty.slice(1)}
+          </span>
+          <a class="details-link" data-id="${service.id}">Details →</a>
+        </div>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.service-card').forEach(card => {
+      const serviceId = parseInt(card.querySelector('.details-link').getAttribute('data-id'));
+      card.querySelector('.details-link').addEventListener('click', () => openServiceDetail(serviceId));
+      card.querySelector('.bookmark-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleBookmark(serviceId, card.querySelector('.bookmark-btn'));
+      });
+    });
+  }
+
+  function toggleBookmark(serviceId, btn) {
+    const idx = savedServices.indexOf(serviceId);
+    if (idx > -1) {
+      savedServices.splice(idx, 1);
+      btn.classList.remove('saved');
+      btn.textContent = '☆';
+    } else {
+      savedServices.push(serviceId);
+      btn.classList.add('saved');
+      btn.textContent = '★';
+    }
+    localStorage.setItem('savedServices', JSON.stringify(savedServices));
+    document.getElementById('savedBadge').textContent = savedServices.length;
+    showToast('Saved!', 'success');
+  }
+
+  function openServiceDetail(serviceId) {
+    currentDetailService = services.find(s => s.id === serviceId);
+    const panel = document.getElementById('detailPanel');
+    const overlay = document.getElementById('modalOverlay');
+
+    document.getElementById('detailBadges').innerHTML = `
+      <span class="detail-badge">${currentDetailService.category}</span>
+      <span class="detail-badge">${currentDetailService.difficulty.toUpperCase()}</span>
+      <span class="detail-badge">${currentDetailService.mode === 'online' ? '🌐 Online' : currentDetailService.mode === 'offline' ? '🏢 Offline' : '🔄 Hybrid'}</span>
+      <span class="detail-badge">✓ Verified Apr 2025</span>
+    `;
+    document.getElementById('detailName').textContent = currentDetailService.name;
+    document.getElementById('detailDescription').textContent = currentDetailService.description;
+
+    document.getElementById('detailActions').innerHTML = `
+      <button class="action-btn" onclick="window.open('${currentDetailService.portalUrl}', '_blank')">🌐 Open Portal</button>
+      <button class="action-btn outline">★ Save</button>
+      <button class="action-btn outline">📤 WhatsApp</button>
+      <button class="action-btn outline">🖨️ Print</button>
+      <button class="action-btn outline">🔗 Copy Link</button>
+      <div class="fee-summary">
+        <div class="fee-metric">Total <div class="fee-metric-value">₹${currentDetailService.fee.total}</div></div>
+        <div class="fee-metric">Govt <div class="fee-metric-value">₹${currentDetailService.fee.govtFee}</div></div>
+        <div class="fee-metric">Service <div class="fee-metric-value">₹${currentDetailService.fee.serviceCharge}</div></div>
+      </div>
+    `;
+
+    const tabs = [
+      { name: 'Overview', icon: 'info' },
+      { name: 'Documents', icon: 'description' },
+      { name: 'Steps', icon: 'timeline' },
+      { name: 'Fees', icon: 'receipt' },
+      { name: 'Notes', icon: 'warning' }
+    ];
+
+    const tabBar = document.getElementById('tabBar');
+    tabBar.innerHTML = `
+      ${tabs.map((tab, idx) => `
+        <button class="tab ${idx === 0 ? 'active' : ''}" data-tab="${idx}">
+          <span class="material-icons-round" style="font-size: 18px; margin-right: 6px; vertical-align: middle;">${tab.icon}</span>
+          ${tab.name}
         </button>
-      </div>
-      <div class="service-badge ${feeClass}">${service.feeType === 'free' ? 'Free' : 'Paid'}</div>
-      <div class="service-meta">
-        <div class="meta-item">
-          <span style="font-weight: 600;">${service.feeDisplay}</span>
+      `).join('')}
+      <div class="tab-indicator" style="width: 120px; left: 0;"></div>
+    `;
+
+    const tabContents = document.getElementById('tabContents');
+    tabContents.innerHTML = `
+      <div class="tab-content active">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px;">
+          <div style="background: var(--surface-1); padding: 16px; border-radius: var(--r-md);">
+            <div style="font-size: 11px; color: var(--text-muted);">Processing Time</div>
+            <div style="font-size: 18px; font-weight: 700; color: var(--gov-blue); margin-top: 4px;">${currentDetailService.time}</div>
+          </div>
+          <div style="background: var(--surface-1); padding: 16px; border-radius: var(--r-md);">
+            <div style="font-size: 11px; color: var(--text-muted);">Difficulty</div>
+            <div style="font-size: 18px; font-weight: 700; color: var(--gov-blue); margin-top: 4px;">${currentDetailService.difficulty.toUpperCase()}</div>
+          </div>
+          <div style="background: var(--surface-1); padding: 16px; border-radius: var(--r-md);">
+            <div style="font-size: 11px; color: var(--text-muted);">Last Verified</div>
+            <div style="font-size: 18px; font-weight: 700; color: var(--gov-blue); margin-top: 4px;">Apr 2025</div>
+          </div>
         </div>
-        <div class="meta-item">
-          <span>⏱ ${service.time}</span>
+        <div style="background: var(--info-bg); padding: 12px 16px; border-left: 4px solid var(--info-border); border-radius: 0 var(--r-sm) var(--r-sm) 0; margin-bottom: 20px;">
+          <div style="font-size: 13px; color: var(--info-text);">ℹ️ ${currentDetailService.eligibility || 'Check eligibility on official portal'}</div>
+        </div>
+        <div style="background: var(--success-bg); padding: 10px 14px; border-radius: var(--r-full); display: inline-block; font-size: 12px; color: var(--success-text); margin-bottom: 20px;">
+          🌐 ${currentDetailService.mode === 'online' ? 'Fully Online' : currentDetailService.mode === 'offline' ? 'Visit Required' : 'Hybrid Mode'}
         </div>
       </div>
-      <p class="service-description">${service.description}</p>
-      <div class="service-card-footer">
-        <button class="view-btn" data-service-id="${service.id}">View Details →</button>
+      <div class="tab-content"><div style="text-align: center; padding: 20px; color: var(--text-muted);">Documents data available</div></div>
+      <div class="tab-content"><div style="text-align: center; padding: 20px; color: var(--text-muted);">Steps will appear here</div></div>
+      <div class="tab-content">
+        <div style="background: var(--gov-blue-light); padding: 16px; border-radius: var(--r-lg); margin-bottom: 16px;">
+          <table style="width: 100%; font-size: 12px;">
+            <tr style="border-bottom: 1px solid var(--surface-3);"><td style="padding: 8px 0;">Govt. Fee</td><td style="text-align: right;">₹${currentDetailService.fee.govtFee}</td><td style="text-align: right; color: var(--text-muted); font-size: 11px;">Paid to ${currentDetailService.fee.govtPayTo}</td></tr>
+            <tr style="border-bottom: 1px solid var(--surface-3);"><td style="padding: 8px 0;">Service Fee</td><td style="text-align: right;">₹${currentDetailService.fee.serviceCharge}</td><td style="text-align: right; color: var(--text-muted); font-size: 11px;">Seva Kendra Charge</td></tr>
+            <tr style="border-bottom: 1px solid var(--surface-3);"><td style="padding: 8px 0;">GST (18%)</td><td style="text-align: right;">₹${currentDetailService.fee.gstAmount}</td><td style="text-align: right; color: var(--text-muted); font-size: 11px;">On service charge only</td></tr>
+            <tr style="background: var(--gov-blue); color: white; font-weight: 700;"><td style="padding: 8px 0;">TOTAL PAYABLE</td><td style="text-align: right;">₹${currentDetailService.fee.total}</td></tr>
+          </table>
+        </div>
+        <div style="background: var(--info-bg); padding: 12px 16px; border-radius: var(--r-md); font-size: 12px; color: var(--info-text); margin-bottom: 16px;">
+          ℹ️ Government fees are paid directly to the official portal. Seva Kendra charges are for form-filling assistance & guidance only.
+        </div>
+      </div>
+      <div class="tab-content">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          ${currentDetailService.notes && currentDetailService.notes.length > 0 
+            ? currentDetailService.notes.map(note => {
+              const bgMap = { danger: 'var(--danger-bg)', warning: 'var(--warning-bg)', info: 'var(--info-bg)', success: 'var(--success-bg)' };
+              const textMap = { danger: 'var(--danger-text)', warning: 'var(--warning-text)', info: 'var(--info-text)', success: 'var(--success-text)' };
+              const iconMap = { danger: '⛔', warning: '⚠️', info: 'ℹ️', success: '✅' };
+              return `<div style="background: ${bgMap[note.type]}; padding: 12px 16px; border-left: 4px solid ${textMap[note.type]}; border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 13px; color: ${textMap[note.type]};">${iconMap[note.type]} ${note.text}</div>`;
+            }).join('')
+            : '<div style="color: var(--text-muted); font-size: 12px;">No special notes for this service</div>'
+          }
+        </div>
       </div>
     `;
-    
-    card.addEventListener('click', (e) => {
-      if(!e.target.classList.contains('bookmark-btn')) {
-        showServiceDetail(service.id);
-      }
-    });
-    
-    grid.appendChild(card);
-  });
-  
-  // Add event listeners to bookmark buttons
-  document.querySelectorAll('.bookmark-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleBookmark(e.target, btn.dataset.serviceId);
-    });
-  });
-  
-  // Add event listeners to view detail buttons
-  document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showServiceDetail(btn.dataset.serviceId);
-    });
-  });
-  
-  initScrollReveal();
-}
 
-// ========== TOGGLE BOOKMARK ========== 
-function toggleBookmark(btn, serviceId) {
-  const isBookmarked = localStorage.getItem(`bookmark_${serviceId}`) === '1';
-  
-  if(isBookmarked) {
-    localStorage.removeItem(`bookmark_${serviceId}`);
-    btn.textContent = '☆';
-    btn.classList.remove('saved');
-    showToast('Service removed from saved', 'info');
-  } else {
-    localStorage.setItem(`bookmark_${serviceId}`, '1');
-    btn.textContent = '★';
-    btn.classList.add('saved');
-    showToast('Service saved! Access it anytime', 'success');
+    document.querySelectorAll('.tab').forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.tab-content')[idx].classList.add('active');
+        const indicator = document.querySelector('.tab-indicator');
+        const tabRect = tab.getBoundingClientRect();
+        const barRect = tabBar.getBoundingClientRect();
+        indicator.style.left = (tabRect.left - barRect.left) + 'px';
+        indicator.style.width = tabRect.width + 'px';
+      });
+    });
+
+    panel.classList.add('active');
+    overlay.classList.add('active');
   }
-}
 
-// ========== SHOW SERVICE DETAIL ========== 
-function showServiceDetail(serviceId) {
-  const service = services.find(s => s.id == serviceId);
-  if(!service) return;
-  
-  document.getElementById('modalTitle').textContent = service.name;
-  
-  // Overview Tab
-  let overviewHTML = `<p style="color: var(--text-secondary); margin-bottom: 16px;">${service.description}</p>`;
-  overviewHTML += `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
-    <div>
-      <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Mode</div>
-      <div style="font-weight: 600; color: var(--gov-blue);">${service.mode === 'online' ? '🌐 Online' : '🏛️ Offline'}</div>
-    </div>
-    <div>
-      <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Difficulty</div>
-      <div style="font-weight: 600; color: var(--gov-blue);">${service.difficulty === 'easy' ? '✓ Easy' : service.difficulty === 'medium' ? '◐ Medium' : '✕ Hard'}</div>
-    </div>
-  </div>`;
-  
-  if(service.eligibility) {
-    overviewHTML += `<div style="background: var(--info-bg); padding: 12px; border-radius: var(--r-md); margin-bottom: 16px; border-left: 4px solid var(--info);">
-      <div style="font-weight: 600; color: var(--gov-blue); margin-bottom: 4px;">Who Can Apply?</div>
-      <div style="font-size: 13px; color: var(--info-text);">${service.eligibility}</div>
-    </div>`;
+  function closeDetailPanel() {
+    document.getElementById('detailPanel').classList.remove('active');
+    document.getElementById('modalOverlay').classList.remove('active');
   }
-  
-  overviewHTML += `<div style="background: var(--saffron); color: white; padding: 16px; border-radius: var(--r-md); text-align: center; cursor: pointer;" onclick="window.open('${service.portalUrl}', '_blank')">
-    🔗 Open Official Portal: ${service.portal}
-  </div>`;
-  
-  document.getElementById('overviewContent').innerHTML = overviewHTML;
-  
-  // Documents Tab
-  let docsHTML = '<ul class="steps-list">';
-  service.documents.forEach(doc => {
-    docsHTML += `
-      <li class="step">
-        <div class="step-number" style="background: ${doc.required ? 'var(--saffron)' : 'var(--surface-3)'}; color: ${doc.required ? 'white' : 'var(--text-primary)'};">
-          ${doc.required ? '✓' : '○'}
-        </div>
-        <div class="step-content">
-          <h4>${doc.name}</h4>
-          <p>${doc.note}</p>
-        </div>
-      </li>
-    `;
-  });
-  docsHTML += '</ul>';
-  document.getElementById('documentsContent').innerHTML = docsHTML;
-  
-  // Steps Tab
-  let stepsHTML = '<ol class="steps-list">';
-  service.steps.forEach((step, idx) => {
-    stepsHTML += `
-      <li class="step">
-        <div class="step-number">${idx + 1}</div>
-        <div class="step-content">
-          <h4>${step.title}</h4>
-          <p>${step.desc}</p>
-        </div>
-      </li>
-    `;
-  });
-  stepsHTML += '</ol>';
-  document.getElementById('stepsContent').innerHTML = stepsHTML;
-  
-  // Fees Tab
-  let feesHTML = '<div class="fee-breakdown">';
-  service.fees.forEach(fee => {
-    feesHTML += `<div class="fee-row"><span>${fee.component}</span><span>${fee.amount}</span></div>`;
-  });
-  feesHTML += '</div>';
-  document.getElementById('feesContent').innerHTML = feesHTML;
-  
-  // Notes Tab
-  let notesHTML = '<ul class="notes-list">';
-  service.notes.forEach(note => {
-    notesHTML += `<li class="note ${note.type}">${note.text}</li>`;
-  });
-  notesHTML += '</ul>';
-  document.getElementById('notesContent').innerHTML = notesHTML;
-  
-  // Show modal
-  const modal = document.getElementById('detailModal');
-  modal.classList.add('active');
-}
 
-// ========== SCROLL REVEAL ========== 
-function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if(entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {threshold: 0.12});
-  
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
+  document.getElementById('detailCloseBtn').addEventListener('click', closeDetailPanel);
+  document.getElementById('modalOverlay').addEventListener('click', closeDetailPanel);
 
-// ========== TOAST NOTIFICATIONS ========== 
-function showToast(message, type = 'info', duration = 3000) {
-  const container = document.getElementById('toastContainer');
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  
-  const icons = {success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️'};
-  
-  toast.innerHTML = `
-    <div class="toast-icon">${icons[type]}</div>
-    <div class="toast-message">${message}</div>
-    <button class="toast-close">×</button>
-    <div class="toast-progress" style="animation-duration: ${duration}ms;"></div>
-  `;
-  
-  container.appendChild(toast);
-  
-  toast.querySelector('.toast-close').addEventListener('click', () => {
-    toast.style.animation = 'slideInRight 300ms var(--ease-accelerate) reverse';
-    setTimeout(() => toast.remove(), 300);
-  });
-  
-  setTimeout(() => toast.remove(), duration);
-}
+  function showToast(message, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `<span>${message}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
 
-// ========== AI ASSISTANT ========== 
-function initAI() {
-  const aiBtn = document.getElementById('aiButton');
+  // AI ASSISTANT
+  const aiButton = document.getElementById('aiButton');
   const aiPanel = document.getElementById('aiPanel');
-  const aiClose = document.getElementById('aiClose');
+  const aiCloseBtn = document.getElementById('aiCloseBtn');
   const aiInput = document.getElementById('aiInput');
   const aiSend = document.getElementById('aiSend');
   const aiMessages = document.getElementById('aiMessages');
-  
-  aiBtn.addEventListener('click', () => {
+
+  aiButton.addEventListener('click', () => {
     aiPanel.classList.toggle('active');
-    if(aiPanel.classList.contains('active')) aiInput.focus();
-  });
-  
-  aiClose.addEventListener('click', () => aiPanel.classList.remove('active'));
-  
-  function getAIResponse(query) {
-    const q = query.toLowerCase();
-    
-    if(q.includes('pan')) return `<strong>PAN Card Services:</strong><br>• PAN New Application (₹107)<br>• PAN Correction/Reprint (₹107)<br>• Aadhaar-PAN Linking (Free)<br><a href='#' style='color: var(--gov-blue);'>View all PAN services →</a>`;
-    if(q.includes('aadhaar')) return `<strong>Aadhaar Services:</strong><br>• Address Update (₹50)<br>• Mobile Update (₹50)<br>• e-Aadhaar Download (Free)<br>• PVC Card Order (₹50)<br><a href='#'>View all Aadhaar services →</a>`;
-    if(q.includes('passport')) return `<strong>Passport Services:</strong><br>• New Application (₹1,500+)<br>• Renewal (₹1,500+)<br>• Tatkal (₹3,500+)<br>Nearest PSK: Borivali<br><a href='#'>View passport details →</a>`;
-    if(q.includes('fee') || q.includes('cost')) return `<strong>Fee Information:</strong><br>Government fees: ₹0–₹2,000<br>Services range: Free to ₹4,000<br>Click any service card for exact breakdown`;
-    if(q.includes('time') || q.includes('days')) return `<strong>Processing Times:</strong><br>Instant: e-Aadhaar, e-EPIC<br>1-7 days: Address updates<br>7-15 days: PAN, Voter ID<br>30+ days: Passport`;
-    if(q.includes('location') || q.includes('address') || q.includes('virar')) return `<strong>📍 We're located at:</strong><br>Digital Seva Kendra, Virar (East)<br>Near Railway Station<br>📞 +91 98765 43210<br>🕐 Mon-Sat, 9 AM - 6 PM`;
-    if(q.includes('document')) return `<strong>Required Documents Vary by Service</strong><br>Most services need:<br>• Aadhaar Card<br>• Passport Photo<br>• Address Proof<br>Click service card for exact list`;
-    
-    return `I can help with:<br>• PAN, Aadhaar, Passport<br>• Voter ID, Driving License<br>• Scholarships, Certificates<br>• Utilities, Employment<br><br>Try: "PAN fee", "Aadhaar update", or "passport steps"`;
-  }
-  
-  function sendMessage() {
-    const text = aiInput.value.trim();
-    if(!text) return;
-    
-    // User message
-    const userMsg = document.createElement('div');
-    userMsg.className = 'ai-message user';
-    userMsg.innerHTML = `<div class="ai-message-text">${text}</div>`;
-    aiMessages.appendChild(userMsg);
-    
-    aiInput.value = '';
-    aiMessages.scrollTop = aiMessages.scrollHeight;
-    
-    // Bot response delay
-    setTimeout(() => {
-      const botMsg = document.createElement('div');
-      botMsg.className = 'ai-message bot';
-      botMsg.innerHTML = `<div class="ai-message-text">${getAIResponse(text)}</div>`;
-      aiMessages.appendChild(botMsg);
-      aiMessages.scrollTop = aiMessages.scrollHeight;
-    }, 500);
-  }
-  
-  aiSend.addEventListener('click', sendMessage);
-  aiInput.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter') sendMessage();
-  });
-}
-
-// ========== LANGUAGE SWITCHING ========== 
-function setLanguage(lang) {
-  currentLanguage = lang;
-  localStorage.setItem('seva_lang', lang);
-  document.documentElement.lang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-  showToast(`Language changed to ${lang.toUpperCase()}`, 'info');
-}
-
-// ========== THEME TOGGLE ========== 
-document.getElementById('themeToggle')?.addEventListener('click', () => {
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  if(isDark) {
-    document.documentElement.removeAttribute('data-theme');
-    currentTheme = 'light';
-    document.getElementById('themeToggle').textContent = '☀️';
-    showToast('Light mode enabled', 'info');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    currentTheme = 'dark';
-    document.getElementById('themeToggle').textContent = '🌙';
-    showToast('Dark mode enabled', 'info');
-  }
-  localStorage.setItem('seva_theme', currentTheme);
-});
-
-// ========== SEARCH ========== 
-function setupSearch() {
-  const searchInputs = [document.getElementById('searchInput'), document.getElementById('heroSearch')];
-  
-  searchInputs.forEach(input => {
-    if(input) {
-      input.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        const filtered = query ? services.filter(s => 
-          s.name.toLowerCase().includes(query) || 
-          s.tags.some(tag => tag.includes(query))
-        ) : services;
-        
-        const grid = document.getElementById('serviceGrid');
-        grid.innerHTML = '';
-        
-        if(filtered.length === 0) {
-          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">No services found. Try searching "PAN", "Aadhaar", "Passport", etc.</div>';
-          return;
-        }
-        
-        filtered.forEach((service, idx) => {
-          const card = document.createElement('div');
-          card.className = 'service-card';
-          const isSaved = localStorage.getItem(`bookmark_${service.id}`) === '1';
-          const feeClass = service.feeType === 'free' ? 'free' : 'paid';
-          
-          card.innerHTML = `
-            <div class="service-card-header">
-              <h3 class="service-card-title">${service.name}</h3>
-              <button class="bookmark-btn ${isSaved ? 'saved' : ''}" data-service-id="${service.id}">
-                ${isSaved ? '★' : '☆'}
-              </button>
-            </div>
-            <div class="service-badge ${feeClass}">${service.feeType === 'free' ? 'Free' : 'Paid'}</div>
-            <div class="service-meta">
-              <div class="meta-item"><span style="font-weight: 600;">${service.feeDisplay}</span></div>
-              <div class="meta-item"><span>⏱ ${service.time}</span></div>
-            </div>
-            <p class="service-description">${service.description}</p>
-            <div class="service-card-footer">
-              <button class="view-btn" data-service-id="${service.id}">View Details →</button>
-            </div>
-          `;
-          
-          grid.appendChild(card);
-        });
-        
-        // Re-attach event listeners
-        document.querySelectorAll('.bookmark-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleBookmark(btn, btn.dataset.serviceId);
-          });
-        });
-        
-        document.querySelectorAll('.view-btn').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showServiceDetail(btn.dataset.serviceId);
-          });
-        });
-      });
+    if (aiPanel.classList.contains('active') && aiMessages.children.length === 0) {
+      addAIMessage('bot', '🙏 नमस्कार! I\'m Seva AI — your Digital Seva Kendra assistant. I can help with required documents, fees, portal links, and step-by-step guides. Type in English, हिंदी, or मराठी.');
     }
   });
-}
 
-// ========== BOTTOM NAV ========== 
-function initBottomNav() {
-  document.querySelectorAll('.bottom-nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const action = item.dataset.action;
-      document.querySelectorAll('.bottom-nav-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      
-      if(action === 'home') window.scrollTo(0, 0);
-      if(action === 'services') document.querySelector('.services-section')?.scrollIntoView({behavior: 'smooth'});
-      if(action === 'ai') document.getElementById('aiPanel')?.classList.add('active');
-    });
-  });
-}
+  aiCloseBtn.addEventListener('click', () => aiPanel.classList.remove('active'));
 
-// ========== MODAL CLOSE ========== 
-document.getElementById('modalClose')?.addEventListener('click', () => {
-  document.getElementById('detailModal').classList.remove('active');
-});
-
-document.getElementById('detailModal')?.addEventListener('click', (e) => {
-  if(e.target.id === 'detailModal') {
-    document.getElementById('detailModal').classList.remove('active');
+  function addAIMessage(sender, text) {
+    const msg = document.createElement('div');
+    msg.className = `ai-message ${sender}`;
+    msg.innerHTML = `
+      ${sender === 'bot' ? '<span style="font-size: 20px;">🤖</span>' : ''}
+      <div class="ai-bubble">${text}</div>
+    `;
+    aiMessages.appendChild(msg);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
   }
-});
 
-document.querySelectorAll('.modal-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    const tabName = tab.dataset.tab;
-    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById(tabName + 'Tab').classList.add('active');
+  function sendAIMessage() {
+    const text = aiInput.value.trim();
+    if (!text) return;
+    addAIMessage('user', text);
+    aiInput.value = '';
+    setTimeout(() => {
+      const response = getAIResponse(text);
+      addAIMessage('bot', response);
+    }, 500);
+  }
+
+  function getAIResponse(input) {
+    const q = input.toLowerCase();
+    if (q.includes('pan')) return 'PAN Card services:<br>• PAN Card New (₹142)<br>• PAN Correction (₹142)<br>• PAN-Aadhaar Link (₹1059)<br>💡 eKYC via Aadhaar OTP takes only 10 mins!';
+    if (q.includes('aadhaar') || q.includes('aadhar')) return 'Aadhaar services:<br>• Address Update (₹80)<br>• Mobile Update (₹85)<br>• e-Aadhaar Download (₹12)<br>• PVC Card (₹80)';
+    if (q.includes('passport')) return 'Passport services:<br>• New Passport (₹1618)<br>• Renewal (₹1618)<br>📍 Nearest PSK: Borivali';
+    if (q.includes('voter') || q.includes('epic')) return 'Voter services:<br>• Voter ID New (₹47)<br>• Correction (₹35)<br>• e-EPIC Download (₹12)';
+    if (q.includes('scholarship')) return 'Scholarship services:<br>• MAHADBT (₹59)<br>• NSP (₹47)<br>📅 Opens annually';
+    return '👋 I can help with PAN, Aadhaar, Passport, Voter ID, Certificates, Scholarships, and 28+ other services. What would you like to know?';
+  }
+
+  aiSend.addEventListener('click', sendAIMessage);
+  aiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendAIMessage(); });
+
+  // THEME TOGGLE
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
   });
-});
 
-// ========== LANGUAGE BUTTONS ========== 
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    setLanguage(btn.dataset.lang);
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // INITIALIZE
+  document.addEventListener('DOMContentLoaded', () => {
+    initSearch();
+    renderCategoryGrid();
+    renderServiceGrid();
+    document.getElementById('savedBadge').textContent = savedServices.length;
   });
-});
-
-// ========== QUICK CHIPS ========== 
-document.querySelectorAll('.quick-chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    showServiceDetail(chip.dataset.serviceId);
-  });
-});
-
-// ========== INITIALIZE ========== 
-document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  renderServices();
-  setupSearch();
-  initAI();
-  initBottomNav();
-});
-  </script>
+</script>
 </body>
 </html>
