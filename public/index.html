@@ -7,7 +7,8 @@
   <title>Digital Seva Kendra | Government Services Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
   <style>
     :root {
@@ -172,7 +173,8 @@
 
     .nav-brand-name {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif;
       color: var(--gov-blue);
     }
 
@@ -321,7 +323,8 @@
 
     .hero-title {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif;
       color: white;
       margin-bottom: 8px;
     }
@@ -1418,6 +1421,58 @@
       font-size: 20px;
     }
 
+    /* ========== ENDORSED STRIP ========== */
+    .endorsed-strip {
+      background: var(--surface-2);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .endorsed-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ========== AI ASSISTANT STYLES ========== */
+    .ai-button {
+      animation: pulse-ring 2s infinite;
+    }
+
+    .ai-button:hover {
+      transform: scale(1.05) !important;
+      box-shadow: 0 6px 16px rgba(255,153,51,0.3) !important;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255,153,51,0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(255,153,51,0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255,153,51,0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .ai-button {
+        bottom: 70px !important;
+        width: 48px !important;
+        height: 48px !important;
+      }
+
+      .ai-panel {
+        max-width: 100% !important;
+        height: 60vh !important;
+        border-radius: 16px 16px 0 0 !important;
+      }
+    }
+
     /* ========== FOOTER ========== */
     .footer {
       background: var(--gov-blue-dark);
@@ -1969,6 +2024,62 @@
       </svg>
     </button>
     <div id="overlayContent"></div>
+  </div>
+
+  <!-- Endorsed By Strip -->
+  <div class="endorsed-strip" id="endorsedStrip" style="display: none;">
+    <div class="endorsed-label" style="font-size: 12px; color: #666; margin-right: 16px; white-space: nowrap;">This portal operates under:</div>
+    <div class="endorsed-chips" style="display: flex; gap: 12px; overflow-x: auto; padding: 8px 0;">
+      <div class="endorsed-chip" style="display: flex; align-items: center; gap: 8px; white-space: nowrap; padding: 8px 12px; background: #FFF3E0; border-radius: 20px;">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: #FF9933; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">PM</div>
+        <div style="font-size: 12px;">
+          <div style="font-weight: 600; color: #333;">Shri Narendra Modi</div>
+          <div style="font-size: 11px; color: #666;">Prime Minister</div>
+        </div>
+      </div>
+      <div class="endorsed-chip" style="display: flex; align-items: center; gap: 8px; white-space: nowrap; padding: 8px 12px; background: #E8F5E9; border-radius: 20px;">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: #138808; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">CM</div>
+        <div style="font-size: 12px;">
+          <div style="font-weight: 600; color: #333;">Shri Devendra Fadnavis</div>
+          <div style="font-size: 11px; color: #666;">CM, Maharashtra</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Button -->
+  <button class="ai-button" id="aiButton" aria-label="Ask AI Assistant" title="Ask AI Assistant" style="position: fixed; bottom: 80px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: #FF9933; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 140; transition: all 0.2s;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m1 15h-2v-2h2v2m0-4h-2V7h2v6z"/>
+    </svg>
+  </button>
+
+  <!-- AI Chat Panel -->
+  <div class="ai-panel" id="aiPanel" style="position: fixed; bottom: 60px; right: 0; width: 100%; max-width: 400px; height: 500px; background: white; border-radius: 16px 16px 0 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: none; flex-direction: column; z-index: 160; transition: transform 0.3s ease;">
+    <!-- AI Header -->
+    <div style="background: #003580; color: white; padding: 16px; border-radius: 16px 16px 0 0; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">🤖</div>
+        <div>
+          <div style="font-size: 14px; font-weight: 600;">Seva AI Assistant</div>
+          <div style="font-size: 11px; opacity: 0.8;">🟢 Online</div>
+        </div>
+      </div>
+      <button id="aiClose" style="background: none; border: none; color: white; cursor: pointer; font-size: 20px; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">✕</button>
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="aiMessages" style="flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="background: #f5f5f5; padding: 12px 16px; border-radius: 12px; align-self: flex-start; max-width: 85%; font-size: 13px; line-height: 1.5; border-radius: 12px 12px 12px 4px;">
+        🙏 नमस्कार! I'm Seva AI — your digital helper for government services. I can help you find documents, fees, steps, and direct portal links. What service do you need help with?
+      </div>
+    </div>
+
+    <!-- AI Input -->
+    <div style="padding: 12px 16px; border-top: 1px solid #e0e0e0; display: flex; gap: 8px; flex-shrink: 0;">
+      <input type="text" id="aiInput" placeholder="Ask me about PAN, Aadhaar, Passport..." style="flex: 1; padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 13px; font-family: inherit; outline: none;" />
+      <button id="aiSend" style="background: #FF9933; color: white; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-weight: 500; transition: background 0.2s;">Send</button>
+    </div>
   </div>
 
   <!-- Mobile Filter Sheet -->
@@ -2997,6 +3108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEventListeners();
   initLanguage();
   initDisclaimer();
+  initAIAssistant();
 });
 
 // ========== FUSE.JS SEARCH ==========
@@ -3704,6 +3816,105 @@ function initDisclaimer() {
   if (sessionStorage.getItem('disclaimer_dismissed') === 'true') {
     document.getElementById('disclaimer').classList.add('hidden');
   }
+}
+
+// ========== AI ASSISTANT ==========
+function initAIAssistant() {
+  const aiButton = document.getElementById('aiButton');
+  const aiPanel = document.getElementById('aiPanel');
+  const aiClose = document.getElementById('aiClose');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+  const aiMessages = document.getElementById('aiMessages');
+
+  // AI response engine
+  function getAIResponse(query) {
+    const q = query.toLowerCase();
+    
+    if (q.includes('pan') && q.includes('link')) {
+      return generateServiceResponse(services.find(s => s.id === 3));
+    } else if (q.includes('pan')) {
+      return generateServiceResponse(services.find(s => s.id === 1));
+    } else if (q.includes('aadhaar') && q.includes('download')) {
+      return generateServiceResponse(services.find(s => s.id === 6));
+    } else if (q.includes('aadhaar')) {
+      return generateServiceResponse(services.find(s => s.id === 4));
+    } else if (q.includes('passport')) {
+      return generateServiceResponse(services.find(s => s.id === 11));
+    } else if (q.includes('voter') || q.includes('epic')) {
+      return generateServiceResponse(services.find(s => s.id === 9));
+    } else if (q.includes('fee') || q.includes('charge') || q.includes('cost')) {
+      return "💰 <strong>Fees breakdown:</strong><br>Government fees vary by service (₹0–₹1500). Service processing fee is ₹10–₹100. GST 18% applies to service fees only. Click on any service card for exact fees.";
+    } else if (q.includes('document')) {
+      return "📋 <strong>Required documents vary by service:</strong><br>Most services need: Aadhaar, Photo, Address proof<br>Click on any service to see exact documents needed.";
+    } else if (q.includes('time') || q.includes('day')) {
+      return "⏱ <strong>Processing times:</strong><br>Instant: e-Aadhaar, e-EPIC<br>1–7 days: Aadhaar updates, Voter ID<br>7–15 days: PAN, Passport<br>Check individual service for exact timeline.";
+    } else if (q.includes('virar') || q.includes('centre') || q.includes('where')) {
+      return "📍 <strong>Digital Seva Kendra Location:</strong><br>Virar (East), Palghar District<br>📞 +91 98765 43210<br>🕐 Mon–Sat 9am–6pm IST<br>We assist with all 34+ services listed here.";
+    } else if (q.includes('scholarship') || q.includes('education')) {
+      return generateServiceResponse(services.find(s => s.id === 16));
+    } else {
+      return "👋 I can help with PAN, Aadhaar, Passport, Voter ID, Driving License, Scholarship, Certificates, and 25+ other services. What would you like to know?";
+    }
+  }
+
+  function generateServiceResponse(service) {
+    if (!service) return "Service not found. Try searching our directory above.";
+    return `<strong>${service.name}</strong><br><br>` +
+           `📋 Category: ${service.category}<br>` +
+           `💵 Fee: ${service.feeDisplay}<br>` +
+           `⏱ Time: ${service.time}<br>` +
+           `🔗 Portal: <a href="${service.portalUrl}" target="_blank" style="color: #003580; text-decoration: underline;">${service.portal}</a><br><br>` +
+           `Click the service card above to see full details, documents, and steps.`;
+  }
+
+  // Toggle AI panel
+  aiButton.addEventListener('click', () => {
+    const isVisible = aiPanel.style.display === 'flex';
+    aiPanel.style.display = isVisible ? 'none' : 'flex';
+    aiPanel.style.transform = isVisible ? 'translateY(100%)' : 'translateY(0)';
+  });
+
+  aiClose.addEventListener('click', () => {
+    aiPanel.style.display = 'none';
+  });
+
+  // Send message
+  function sendMessage() {
+    const text = aiInput.value.trim();
+    if (!text) return;
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.style.cssText = 'background: #003580; color: white; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%; font-size: 13px; line-height: 1.5; border-radius: 12px 4px 12px 12px;';
+    userMsg.textContent = text;
+    aiMessages.appendChild(userMsg);
+
+    // Show typing indicator
+    const typingMsg = document.createElement('div');
+    typingMsg.style.cssText = 'background: #f5f5f5; padding: 12px 16px; border-radius: 12px; align-self: flex-start; font-size: 13px;';
+    typingMsg.innerHTML = '🤖 <em>Typing...</em>';
+    aiMessages.appendChild(typingMsg);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+
+    // Simulate delay
+    setTimeout(() => {
+      typingMsg.remove();
+      const response = getAIResponse(text);
+      const aiMsg = document.createElement('div');
+      aiMsg.style.cssText = 'background: #f5f5f5; padding: 12px 16px; border-radius: 12px; align-self: flex-start; max-width: 85%; font-size: 13px; line-height: 1.5; border-radius: 12px 12px 12px 4px;';
+      aiMsg.innerHTML = response;
+      aiMessages.appendChild(aiMsg);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+    }, 800);
+
+    aiInput.value = '';
+  }
+
+  aiSend.addEventListener('click', sendMessage);
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
 }
 </script>
 </body>
